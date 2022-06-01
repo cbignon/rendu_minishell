@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:35:12 by cbignon           #+#    #+#             */
-/*   Updated: 2022/04/26 16:30:53 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/01 15:34:12 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ char	*substitute_not_in_env(char *str)
 		return (get_empty_str());
 	else
 	{
-		if (is_quoted(str) && ft_str_has_char(str, ' ') == -1)
-			return (skip_quotes(str, 0));
+		// if (is_quoted(str) && ft_str_has_char(str, ' ') == -1)
+		// 	return (skip_quotes(str, 0));
 		return (str);
 	}
 }

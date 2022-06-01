@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 12:17:30 by atron             #+#    #+#             */
-/*   Updated: 2022/06/01 13:51:21 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/01 15:20:37 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	gc_delone(void **ptr, int out)
 	{
 		(*gc)->ptr_list = current->next;
 		ft_lstdelone(current, &free);
+		*ptr = NULL;
 		return (out);
 	}
 	prev->next = next;
