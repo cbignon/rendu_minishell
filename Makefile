@@ -6,7 +6,7 @@
 #    By: atron <atron@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 16:50:21 by atron             #+#    #+#              #
-#    Updated: 2022/06/01 10:58:10 by atron            ###   ########.fr        #
+#    Updated: 2022/06/01 11:06:12 by atron            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -167,7 +167,6 @@ SRCS += utils/ft_sort_tab.c
 SRCS += utils/ft_printerr.c
 SRCS += utils/ft_syntax_check.c
 SRCS += utils/ft_tab_to_str.c
-SRCS += utils/log_tab.c
 SRCS += utils/first_space_or_quote.c
 SRCS += utils/get_closing_quote.c
 SRCS += utils/append_index.c

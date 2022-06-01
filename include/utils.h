@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:47:19 by atron             #+#    #+#             */
-/*   Updated: 2022/04/29 14:12:24 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/01 11:05:58 by atron            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_bool	is_meta(char c);
 char	*ft_tab_to_str(char **tab, char c, int final_len);
 int		size_tab_to_str(char **tab);
 char	*ft_tab_to_simple_str(char **tab);
-void	log_tab(char **tab);
 int		first_space_or_quote(char *str, int i);
 int		get_closing_quote(char *str, char quote);
 int		verify_syntax(char *cmd);
