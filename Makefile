@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+         #
+#    By: atron <atron@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 16:50:21 by atron             #+#    #+#              #
-#    Updated: 2022/05/31 13:34:58 by cbignon          ###   ########.fr        #
+#    Updated: 2022/06/01 10:17:26 by atron            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -131,6 +131,7 @@ SRCS += processes/run_wait_processes.c
 SRCS += processes/get_processes.c
 SRCS += processes/clean_processes.c
 SRCS += processes/processes_utils.c
+SRCS += processes/redirect.c
 
 #FT_SPLIT_ARGS
 #############################################################
@@ -203,11 +204,11 @@ re:		fclean all
 
 valgrind:
 	${MAKE} -C . -f Makefile config=debug platform=${platform} architecture=${architecture} logging=${logging}
-	valgrind -s --leak-check=full ./$(NAME)
+	valgrind -s --leak-check=full --show-leak-kinds=all ./$(NAME)
 
 valgrind-re:
 	${MAKE} -C . -f Makefile re config=debug platform=${platform} architecture=${architecture} logging=${logging}
-	valgrind -s --leak-check=full ./$(NAME)
+	valgrind -s --leak-check=full --show-leak-kinds=all ./$(NAME)
 
 libft:
 	${MAKE} -C libft/ -f Makefile config=$(config) platform=${platform} architecture=${architecture}

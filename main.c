@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:06:17 by atron             #+#    #+#             */
-/*   Updated: 2022/04/29 14:13:19 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/01 10:00:28 by atron            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ void	minishell(void)
 	{
 		cmd = read_cmd();
 		if (!cmd)
+		{
+			rl_clear_history();
 			ft_exit("exit", 0, 1);
+		}
 		else if (*cmd != '\0')
 		{
 			processes = setup_processes(cmd);

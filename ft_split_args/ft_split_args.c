@@ -6,7 +6,7 @@
 /*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:38:40 by atron             #+#    #+#             */
-/*   Updated: 2022/04/22 16:05:37 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/01 10:06:40 by atron            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	**ft_split_args(char *str)
 	{
 		tab[index] = ft_strndup_cu(args_info[index].start,
 				args_info[index].length);
+		verify_ptr(tab[index]);
 		index++;
 	}
 	tab[index] = NULL;
