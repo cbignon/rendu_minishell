@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:47:19 by atron             #+#    #+#             */
-/*   Updated: 2022/06/01 11:05:58 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/01 14:04:32 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	*ft_find_in_tab(char **tab_str, char *str);
 char	*ft_start_with(char *str, char *s);
 char	**ft_tabcpy(char **tab);
 char	**ft_tabdup(char **tab);
+char	**ft_tabdup_cu(char **tab);
 char	**ft_tabncpy(char **tab, int n);
 int		ft_str_equ(char *s1, char *s2);
 char	**ft_read_dir(char *dir_name);
@@ -41,5 +42,7 @@ void	*malloc_verify(int size);
 void	verify_ptr(void *ptr);
 void	*malloc_bzero(int size);
 char	*skip_quotes(char *str, int index);
+
+void	*malloc_verify_ncu(int size);
 
 #endif

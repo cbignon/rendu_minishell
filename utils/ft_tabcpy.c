@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tabcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:46:58 by atron             #+#    #+#             */
-/*   Updated: 2022/04/22 16:05:38 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/01 14:04:10 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,28 @@ char	**ft_tabncpy(char **tab, int n)
 }
 
 char	**ft_tabdup(char **tab)
+{
+	char	**dup;
+	int		len;
+	int		i;
+
+	if (!tab)
+		return (NULL);
+	len = (int)ft_tablen(tab);
+	dup = (char **)malloc_verify_ncu(sizeof(char *) * (len + 1));
+	if (!dup)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		dup[i] = ft_strdup(tab[i]);
+		i++;
+	}
+	dup[i] = NULL;
+	return (dup);
+}
+
+char	**ft_tabdup_cu(char **tab)
 {
 	char	**dup;
 	int		len;

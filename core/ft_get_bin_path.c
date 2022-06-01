@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:28:45 by cbignon           #+#    #+#             */
-/*   Updated: 2022/05/31 15:12:38 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/01 13:56:43 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,21 @@ char	*ft_get_bin_path(char *cmd, char **env)
 void	ft_exec_bin(t_process *p)
 {
 	char		*bin_path;
+	char		**tab;
 	char		***env;
+	char		**en;
 	struct stat	info;
 
 	env = choose_env(p);
 	bin_path = p->cmd;
 	if (ft_str_has_char(p->cmd, '/') == -1)
-		bin_path = ft_get_bin_path(p->cmd, *env);
+		bin_path = ft_strdup(ft_get_bin_path(p->cmd, *env));
 	if (bin_path)
 	{
-		if (execve(bin_path, p->args, *env) == -1)
+		tab = ft_tabdup(p->args);
+		en = ft_tabdup(*env);
+		gc_clear(0);
+		if (execve(bin_path, tab, en) == -1)
 			p->res = ft_printerr(p->std_err, p->cmd, NULL,
 					"no such file or directory") + 126;
 		if (stat(p->cmd, &info) == 0)
@@ -57,6 +62,9 @@ void	ft_exec_bin(t_process *p)
 		gc_delone((void **)bin_path, 0);
 	}
 	else
+	{
+		gc_clear(0);
 		p->res = ft_printerr(p->std_err, p->cmd, NULL,
 				"no such file or directory");
+	}
 }

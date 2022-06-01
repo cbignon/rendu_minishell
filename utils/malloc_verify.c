@@ -6,13 +6,22 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 10:02:27 by cbignon           #+#    #+#             */
-/*   Updated: 2022/04/25 16:25:44 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/01 14:03:38 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils_internal.h"
 #include "env.h"
 #include "core.h"
+
+void	*malloc_verify_ncu(int size)
+{
+	void		*ptr;
+
+	ptr = malloc(size);
+	verify_ptr(ptr);
+	return (ptr);
+}
 
 void	*malloc_verify(int size)
 {

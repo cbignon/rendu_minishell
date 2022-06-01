@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: atron <atron@student.42.fr>                +#+  +:+       +#+         #
+#    By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 16:50:21 by atron             #+#    #+#              #
-#    Updated: 2022/06/01 11:06:12 by atron            ###   ########.fr        #
+#    Updated: 2022/06/01 14:09:20 by cbignon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ LIB_PATH = -L./libft/
 LIBS = -lft
 LIBS += -lreadline
 
-FLAGS = -Wall -Wextra -Werror -std=gnu99
+FLAGS = -Wall -Wextra -Werror# -std=gnu99
 
 ifeq ($(architecture), x64)
   FLAGS += -DX64
@@ -60,7 +60,7 @@ ifeq ($(config), debug)
 endif
 
 ifeq ($(config), release)
-  FLAGS += -O3
+#   FLAGS += -O3
 endif
 
 ifeq ($(config), memory)
@@ -177,34 +177,38 @@ SRCS += utils/ft_skip_quotes.c
 #############################################################
 #############################################################
 
-all: compile
-
-$(NAME): ${OBJS} $(MAINOBJ)
+$(NAME): prep ${OBJS} $(MAINOBJ)
 	${MAKE} -C libft/ -f Makefile config=$(config) platform=${platform} architecture=${architecture}
 	$(CC) $(FLAGS) -o $(NAME) $(MAINOBJ) $(OBJS) $(LIB_PATH) $(LIBS)
 
+all: compile
+
 compile:
-	$(SILENT) $(MAKE) prep
-	$(SILENT) $(MAKE) $(NAME)
+	$(MAKE) prep
+	$(MAKE) $(NAME)
 
 clean:
 	rm -rf intermediate
+	rm -f prep
 	${MAKE} -C libft/ -f Makefile clean
 
 fclean:
 	rm -rf intermediate
+	rm -f prep
 	rm -f $(NAME)
 	${MAKE} -C libft/ -f Makefile fclean
 
 re:		fclean all
 
-valgrind:
-	${MAKE} -C . -f Makefile config=debug platform=${platform} architecture=${architecture} logging=${logging}
-	valgrind -s --leak-check=full ./$(NAME)
+-include valgrind.mk
+
+# valgrind:
+# 	${MAKE} -C . -f Makefile config=debug platform=${platform} architecture=${architecture} logging=${logging}
+# 	valgrind -s --leak-check=full --show-leak-kinds=all --suppressions=ignoreliberror ./$(NAME)
 
 valgrind-re:
 	${MAKE} -C . -f Makefile re config=debug platform=${platform} architecture=${architecture} logging=${logging}
-	valgrind -s --leak-check=full ./$(NAME)
+	valgrind -s --leak-check=full --show-leak-kinds=all --suppressions=ignoreliberror /$(NAME)
 
 libft:
 	${MAKE} -C libft/ -f Makefile config=$(config) platform=${platform} architecture=${architecture}
@@ -212,7 +216,8 @@ libft:
 prep:
 	$(SILENT)mkdir -p ${OBJDIRECTORIES}
 	$(SILENT)mkdir -p logs
+	touch prep
 
 $(OBJDIR)%.o: %.c
 	@echo $(notdir $<)
-	$(SILENT) $(CC) $(FLAGS) $(INCLUDE) -c $<  -o $(OBJDIR)$(<:.c=.o)
+	$(CC) $(FLAGS) $(INCLUDE) -c $<  -o $(OBJDIR)$(<:.c=.o)

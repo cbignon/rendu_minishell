@@ -53,7 +53,7 @@ ifeq ($(config), debug)
 endif
 
 ifeq ($(config), release)
-  FLAGS += -O3
+#   FLAGS += -O3
 endif
 
 ifeq ($(config), memory)

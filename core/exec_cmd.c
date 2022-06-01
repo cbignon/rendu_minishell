@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:32:26 by cbignon           #+#    #+#             */
-/*   Updated: 2022/04/29 15:28:24 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/01 14:15:43 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	child_process(t_process *p)
 	}
 	close_fd(p);
 	exec_cmd(p);
-	exit(p->res);
+	ft_exit(NULL, p->res, 1);
 }
 
 void	fork_cmd(t_process *p)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:06:17 by atron             #+#    #+#             */
-/*   Updated: 2022/06/01 10:00:28 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/01 13:54:12 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*read_cmd(void)
 	{
 		if (!cmd)
 			return (NULL);
-		size = strlen(cmd) + 1;
+		size = ft_strlen(cmd) + 1;
 		cmd = move_to_gc((void **)&cmd, size);
 		cmd[size - 1] = '\0';
 		is_valid = verify_syntax(cmd);

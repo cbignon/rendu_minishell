@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 14:34:49 by cbignon           #+#    #+#             */
-/*   Updated: 2022/04/22 16:54:45 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/01 13:59:57 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_print_sorted_env(int std_out, int std_err, char **env)
 	char	**to_print;
 
 	to_print = NULL;
-	to_print = ft_tabdup(env);
+	to_print = ft_tabdup_cu(env);
 	if (!to_print)
 		return ;
 	to_print = (char **)ft_sort_tab((void **)to_print, ft_tablen(env));
