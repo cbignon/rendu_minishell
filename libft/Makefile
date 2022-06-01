@@ -151,23 +151,27 @@ SRCS += garbage_collection/move_to_gc.c
 OBJDIRECTORIES = $(OBJDIR)
 OBJDIRECTORIES = $(OBJDIR)garbage_collection
 
-$(NAME):	prep ${OBJS}
-	$(SILENT) ar -rcs $(NAME).a ${OBJS}
+all: compile
 
-all:	$(NAME)
+$(NAME):	${OBJS}
+	$(SILENT) ar -rcs $(NAME).a $^
+
+compile:
+	$(SILENT) $(MAKE) prep
+	$(SILENT) $(MAKE) $(NAME)
 
 clean:
 	rm -f $(OBJS)
 	rm -rf intermediate
 
-fclean:	clean
+fclean:
+	rm -f $(OBJS)
+	rm -rf intermediate
 	rm -f $(NAME)
 
-re:		fclean all
+re:	fclean compile
 
-re:		fclean all
-
-bonus:	all
+bonus:	compile
 
 prep:
 	$(SILENT)mkdir -p $(OBJDIRECTORIES)

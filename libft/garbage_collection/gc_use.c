@@ -6,7 +6,7 @@
 /*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 12:17:30 by atron             #+#    #+#             */
-/*   Updated: 2022/04/22 16:05:51 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/01 10:43:27 by atron            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static t_gc	**get_garbage_collection(void)
 	if (!gc)
 	{
 		gc = (t_gc *)malloc(sizeof(t_gc));
+		if (!gc)
+			return (NULL);
 		gc->ptr_list = NULL;
 	}
 	return (&gc);
@@ -36,6 +38,8 @@ void	*gc_malloc(size_t size)
 
 	ptr = malloc(size);
 	gc = get_garbage_collection();
+	if (!gc)
+		return (NULL);
 	if (!ptr)
 		return (NULL);
 	ft_lstadd_front(&(*gc)->ptr_list, ft_lstnew(ptr));
@@ -50,6 +54,8 @@ int	gc_delone(void **ptr, int out)
 	t_list	*current;
 
 	gc = get_garbage_collection();
+	if (!gc)
+		return (-1);
 	prev = (*gc)->ptr_list;
 	current = ft_lstfind(&prev, &next, *ptr);
 	if (!current)
@@ -71,6 +77,8 @@ int	gc_clear(int out)
 	t_gc	**gc;
 
 	gc = get_garbage_collection();
+	if (!gc)
+		return (1);
 	ft_lstclear(&(*gc)->ptr_list, &free);
 	ft_free((void **)gc, 0);
 	return (out);

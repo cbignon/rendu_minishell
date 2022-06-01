@@ -6,7 +6,7 @@
 #    By: atron <atron@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 16:50:21 by atron             #+#    #+#              #
-#    Updated: 2022/06/01 10:17:26 by atron            ###   ########.fr        #
+#    Updated: 2022/06/01 10:58:10 by atron            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,6 @@ endif
 
 ifndef platform
   platform=linux
-endif
-
-ifndef logging
-  logging=0
 endif
 
 SILENT = @
@@ -80,10 +76,6 @@ ifeq ($(config), leaks)
   FLAGS += -g3
 endif
 
-ifeq ($(logging), 1)
-  FLAGS += -DLOGGING
-endif
-
 OBJDIR = ./intermediate/$(config)/
 
 TMPOBJS = $(SRCS:.c=.o)
@@ -97,6 +89,7 @@ OBJDIRECTORIES += $(OBJDIR)core
 OBJDIRECTORIES += $(OBJDIR)env
 OBJDIRECTORIES += $(OBJDIR)ft_split_args
 OBJDIRECTORIES += $(OBJDIR)utils
+OBJDIRECTORIES += $(OBJDIR)tests
 OBJDIRECTORIES += $(OBJDIR)utils
 OBJDIRECTORIES += $(OBJDIR)processes
 OBJDIRECTORIES += $(OBJDIR)garbage_collection
@@ -185,30 +178,34 @@ SRCS += utils/ft_skip_quotes.c
 #############################################################
 #############################################################
 
-all: $(NAME)
+all: compile
 
-$(NAME): prep ${OBJS} $(MAINOBJ)
+$(NAME): ${OBJS} $(MAINOBJ)
 	${MAKE} -C libft/ -f Makefile config=$(config) platform=${platform} architecture=${architecture}
 	$(CC) $(FLAGS) -o $(NAME) $(MAINOBJ) $(OBJS) $(LIB_PATH) $(LIBS)
+
+compile:
+	$(SILENT) $(MAKE) prep
+	$(SILENT) $(MAKE) $(NAME)
 
 clean:
 	rm -rf intermediate
 	${MAKE} -C libft/ -f Makefile clean
 
-fclean:	clean
+fclean:
+	rm -rf intermediate
 	rm -f $(NAME)
-	rm -f $(TESTER_NAME)
 	${MAKE} -C libft/ -f Makefile fclean
 
 re:		fclean all
 
 valgrind:
 	${MAKE} -C . -f Makefile config=debug platform=${platform} architecture=${architecture} logging=${logging}
-	valgrind -s --leak-check=full --show-leak-kinds=all ./$(NAME)
+	valgrind -s --leak-check=full ./$(NAME)
 
 valgrind-re:
 	${MAKE} -C . -f Makefile re config=debug platform=${platform} architecture=${architecture} logging=${logging}
-	valgrind -s --leak-check=full --show-leak-kinds=all ./$(NAME)
+	valgrind -s --leak-check=full ./$(NAME)
 
 libft:
 	${MAKE} -C libft/ -f Makefile config=$(config) platform=${platform} architecture=${architecture}
