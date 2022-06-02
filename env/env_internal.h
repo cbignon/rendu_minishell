@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:48:45 by cbignon           #+#    #+#             */
-/*   Updated: 2022/04/27 15:36:43 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/02 12:47:35 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ void	ft_cd(t_process *p);
  */
 char	*ft_get_expanded_cmd(char *cmd);
 void	keep_invalid_dollar(char *str, int *i, int *j, char *to_keep);
+void	to_expand_dollar(char *str, int *i, char *to_expand, int *j);
 
 /*******************************************************************************
  * EXPAND_PARSER.C 
  */
 char	*parse_dollar(char *str, int i, int j, char *full);
-void	to_expand_dollar(char *str, int *i, char *to_expand, int *j);
 void	to_keep_simple_quote(char *str, int *i, int *j, char *to_keep);
 void	to_keep_double_quote(char *str, int *i, char *to_keep, int *k);
 void	to_keep_no_doll(char *str, int *i, char *to_keep, int *j);
