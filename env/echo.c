@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 09:48:32 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/01 15:38:03 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/02 17:39:13 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_echo(t_process *p)
 	i = 1;
 	option = 0;
 	count = ft_count_args(p->args);
-	printf("count =%d\n", count);
 	while (i < count)
 	{
 		if (i == 1 && ft_str_equ(p->args[i], "-n"))

@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 11:23:51 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/02 12:47:12 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/02 17:38:46 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,43 @@
 
 void	to_keep_simple_quote(char *str, int *i, int *j, char *to_keep)
 {
-	int	dollar;
 	int	closing_quote;
+	int	quote;
+	int	*in_dbl;
 
-	dollar = ft_strclen((str + *i), '$') + *i;
-	closing_quote = ft_strclen((str + dollar), '\'') + dollar + 1;
-	while ((*i) < closing_quote)
-		to_keep[(*j)++] = str[(*i)++];
+	in_dbl = get_dble_option();
+	quote = (*i);
+	closing_quote = (ft_strclen(str + (quote + 1), '\'')) + *i + 1;
+	if (*in_dbl == 1)
+		closing_quote = quote;
+	if (str[closing_quote] != '\'')
+		closing_quote = quote;
+	while (str[(*i)] && (*i) <= closing_quote)
+	{
+		to_keep[(*j)] = str[(*i)];
+		(*i)++;
+		(*j)++;
+	}
 	to_keep[*j] = '\0';
-	//printf("KEEP SIMPLEQUOTE = |%s|\n", to_keep);
 }
 
 void	to_keep_double_quote(char *str, int *i, char *to_keep, int *k)
 {
+	int	*in_dble;
+
+	in_dble = get_dble_option();
 	if (!str[*i])
 		return ;
-	while (str[*i] && str[*i] != '$')
-	{
-		to_keep[*k] = str[*i];
-		(*i)++;
-		(*k)++;
-	}
+	to_keep[*k] = str[*i];
+	(*i)++;
+	(*k)++;
 	to_keep[*k] = '\0';
-	//printf("DBL QUOTE =%s|\n", to_keep);
+	if (*in_dble == -1)
+		*in_dble = 1;
+	else if (*in_dble == 0)
+		*in_dble = 1;
+	else if (*in_dble == 1)
+		*in_dble = 0;
 }
 
 void	to_keep_no_doll(char *str, int *i, char *to_keep, int *j)
@@ -50,7 +64,18 @@ void	to_keep_no_doll(char *str, int *i, char *to_keep, int *j)
 		(*i)++;
 	}
 	to_keep[*j] = '\0';
-	//printf("KEEP NODOLL = |%s|\n", to_keep);
+}
+
+int	*get_dble_option(void)
+{
+	static int	*in_dble;
+
+	if (!in_dble)
+	{
+		in_dble = (int *)malloc_verify(sizeof(int));
+		*in_dble = -1;
+	}
+	return (in_dble);
 }
 
 char	*parse_dollar(char *str, int i, int j, char *full)

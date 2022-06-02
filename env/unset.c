@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 10:35:43 by cbignon           #+#    #+#             */
-/*   Updated: 2022/04/22 16:05:37 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/02 17:40:19 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,10 @@ void	ft_remove_var(char ***env, char *var)
 void	ft_unset(t_process *p)
 {
 	int		i;
-	//char	**new_env;
 	char	***env;
 	char	*var_name;
 
 	i = 0;
-	//new_env = NULL;
 	env = choose_env(p);
 	if (!p->args[1])
 		return ;
