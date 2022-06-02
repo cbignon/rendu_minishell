@@ -6,40 +6,11 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 11:23:51 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/02 10:14:44 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/02 12:47:12 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env_internal.h"
-
-void	to_expand_dollar(char *str, int *i, char *to_expand, int *j)
-{
-	int	doll;
-
-	doll = 0;
-	while (str[*i])
-	{
-		if (str[*i] == '$')
-		{
-			doll = *i;
-			to_expand[(*j)++] = str[(*i)++];
-			while (str[*i] && (ft_is_valid_var_char(str[*i]) || str[*i] == '?'))
-			{
-				if (*i == (doll + 1) && ft_isdigit(str[*i]))
-				{
-					to_expand[(*j)++] = str[(*i)++];
-					to_expand[*j] = '\0';
-					return ;
-				}
-				to_expand[(*j)++] = str[(*i)++];
-			}
-			if (str[(*i)] != '$' && str[(*i)] != '\"' && str[(*i)] != '\'')
-				to_expand[(*j)++] = '\0';
-		}
-		else
-			break ;
-	}
-}
 
 void	to_keep_simple_quote(char *str, int *i, int *j, char *to_keep)
 {
@@ -48,15 +19,10 @@ void	to_keep_simple_quote(char *str, int *i, int *j, char *to_keep)
 
 	dollar = ft_strclen((str + *i), '$') + *i;
 	closing_quote = ft_strclen((str + dollar), '\'') + dollar + 1;
-	while (str[(*i)])
-	{
-		if ((str[*i] == '\"' && *i > closing_quote)
-			|| (*i > closing_quote && str[*i] == '$'))
-			break ;
-		else
-			to_keep[(*j)++] = str[(*i)++];
-	}
+	while ((*i) < closing_quote)
+		to_keep[(*j)++] = str[(*i)++];
 	to_keep[*j] = '\0';
+	//printf("KEEP SIMPLEQUOTE = |%s|\n", to_keep);
 }
 
 void	to_keep_double_quote(char *str, int *i, char *to_keep, int *k)
@@ -70,6 +36,7 @@ void	to_keep_double_quote(char *str, int *i, char *to_keep, int *k)
 		(*k)++;
 	}
 	to_keep[*k] = '\0';
+	//printf("DBL QUOTE =%s|\n", to_keep);
 }
 
 void	to_keep_no_doll(char *str, int *i, char *to_keep, int *j)
@@ -83,6 +50,7 @@ void	to_keep_no_doll(char *str, int *i, char *to_keep, int *j)
 		(*i)++;
 	}
 	to_keep[*j] = '\0';
+	//printf("KEEP NODOLL = |%s|\n", to_keep);
 }
 
 char	*parse_dollar(char *str, int i, int j, char *full)
