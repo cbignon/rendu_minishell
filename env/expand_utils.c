@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:35:12 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/01 15:34:12 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/02 10:12:43 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,7 @@ char	*substitute_not_in_env(char *str)
 	if (check_var_name(no_dollar) == 0)
 		return (get_empty_str());
 	else
-	{
-		// if (is_quoted(str) && ft_str_has_char(str, ' ') == -1)
-		// 	return (skip_quotes(str, 0));
 		return (str);
-	}
 }
 
 char	*ft_accumulate(char *full, char *to_expand, char *to_keep, int *k)

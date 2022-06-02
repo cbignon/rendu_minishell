@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 09:19:40 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/01 15:35:30 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/02 10:15:06 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	search_in_env_global(char *str)
 	verify_ptr(to_find);
 	if (is_var_in_env(env->gl_env, to_find))
 		return (1);
-	// gc_delone((void **)to_find, 0);
 	return (0);
 }
 
