@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:34:59 by cbignon           #+#    #+#             */
-/*   Updated: 2022/04/29 15:35:43 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/02 13:25:37 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,13 @@ void	setup_heredoc(t_process *p)
 		if (p->redir[index].type == STDIN_HEREDOC)
 		{
 			delim = p->redir[index].file;
+			
+			printf("%s\n", delim);
+			p->redir[index].quotes = is_quoted(delim);
+			delim = skip_quotes(delim, 0);
 			create_heredoc(p, index, heredoc_nb);
 			fd = open(p->redir[index].file, O_CREAT | O_RDWR | O_TRUNC, 0777);
-			file = get_stdin(delim, &p->redir[index].type);
+			file = get_stdin(delim, &p->redir[index].type, p->redir[index].quotes);
 			ft_putstr_fd(file, fd);
 			close(fd);
 			gc_delone((void **)&delim, 0);
