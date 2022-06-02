@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 11:23:51 by cbignon           #+#    #+#             */
-/*   Updated: 2022/04/26 16:20:22 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/02 10:14:44 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,13 @@ void	to_keep_simple_quote(char *str, int *i, int *j, char *to_keep)
 	closing_quote = ft_strclen((str + dollar), '\'') + dollar + 1;
 	while (str[(*i)])
 	{
-		if (str[*i] == '\"' || (*i > closing_quote && str[*i] == '$'))
+		if ((str[*i] == '\"' && *i > closing_quote)
+			|| (*i > closing_quote && str[*i] == '$'))
 			break ;
 		else
 			to_keep[(*j)++] = str[(*i)++];
 	}
 	to_keep[*j] = '\0';
-	if (ft_str_has_char(to_keep, ' ') == -1 && ft_strlen(to_keep) > 2)
-		skip_quotes(to_keep, 0);
 }
 
 void	to_keep_double_quote(char *str, int *i, char *to_keep, int *k)
@@ -84,8 +83,6 @@ void	to_keep_no_doll(char *str, int *i, char *to_keep, int *j)
 		(*i)++;
 	}
 	to_keep[*j] = '\0';
-	if (ft_str_has_char(to_keep, ' ') == -1)
-		to_keep = skip_quotes(to_keep, 0);
 }
 
 char	*parse_dollar(char *str, int i, int j, char *full)
