@@ -18,8 +18,8 @@ int	get_numbered_redirect(char *str)
 
 	index = 0;
 	while (str[index] && str[index] != '|'
-		&& str[index] != ' ' && str[index] != '\''
-		&& str[index] != '\"')
+		&& str[index] != ' ' /* && str[index] != '\''
+		&& str[index] != '\"'*/)
 	{
 		if (!ft_isdigit(str[index]) && str[index] != '>' && str[index] != '<')
 			return (0);
