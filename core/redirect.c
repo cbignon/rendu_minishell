@@ -88,22 +88,22 @@ void	setup_redirect(t_process *p)
 {
 	int	fd;
 	int	index;
-	int	options;
 	int	stdfd;
 
 	index = 0;
 	while (p->redir[index].type != NONE)
 	{
-		options = setup_options(p, &index, &fd, &stdfd);
+		setup_options(p, &index, &fd, &stdfd);
 		if (!ft_is_builtin(p->cmd) || p->proc_count > 1)
 		{
 			if (fd == -1)
+			{
 				if (errno == 13)
 					ft_exit(NULL, ft_printerr(2, p->redir->file, NULL,
 							"Permission denied"), 2);
-			if (fd == -1)
 				ft_exit(NULL, ft_printerr(2, p->redir->file, NULL,
 						"No such file or Directory"), 2);
+			}
 			dup2(fd, stdfd);
 			close(fd);
 		}

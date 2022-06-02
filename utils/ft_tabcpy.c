@@ -34,12 +34,12 @@ char	**ft_tabcpy(char **tab)
 
 char	**ft_tabncpy(char **tab, int n)
 {
-	int		size;
+	//int		size;
 	char	**out;
 	int		index;
 
 	index = 0;
-	size = ft_tablen(tab);
+	//size = ft_tablen(tab);
 	out = (char **)malloc_verify(sizeof(char *) * (n + 1));
 	if (!out)
 		return (NULL);

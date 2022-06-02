@@ -45,10 +45,17 @@ char	*find_in_path(char **path, char *cmd)
 	dp = opendir(path[i]);
 	while (!dp && path[i])
 		dp = opendir(path[i++]);
-	while (path[i] && dp != NULL)
+	while (path[i])
 	{
+		if (!dp)
+		{
+			i++;
+			if (path[i])
+				dp = opendir(path[i]);
+			continue ;
+		}
 		dirp = readdir(dp);
-		while (dirp != NULL)
+		while (dirp)
 		{
 			if (ft_str_equ(dirp->d_name, cmd) == 1)
 				return (get_full_binpath(path[i], dp, dirp));

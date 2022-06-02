@@ -23,9 +23,9 @@ t_bool	verify_meta(char *str, int index)
 {
 	int		num;
 	char	c;
-	int		index2;
+	//int		index2;
 
-	index2 = index;
+	//index2 = index;
 	num = ft_chara_count(&str[index]);
 	if ((str[index] == '>' || str[index] == '<') && num > 2)
 		return (FALSE);
@@ -34,7 +34,7 @@ t_bool	verify_meta(char *str, int index)
 	c = str[index];
 	while (str[index] && str[index] == c)
 		index++;
-	while (str[index] && str[index] == ' ')
+	while (str[index] == ' ')
 		index++;
 	if (is_meta(str[index]))
 		return (FALSE);

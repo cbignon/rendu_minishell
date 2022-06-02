@@ -38,7 +38,7 @@ char	*ft_expand(char *str, int j, int i)
 			tmp[j] = ft_substr_cu(str, i + 1, (get_dollar_len(str, i) - 1));
 			i += ft_strlen(tmp[j]) + 1;
 		}
-		else if (str[i] == '$' && str[i + 1] && str[i + 1] == '?')
+		else if (str[i] == '$' && str[i + 1])
 		{
 			tmp[j] = ft_strdup_cu("LAST_RET_VALUE");
 			i += 2;
@@ -67,9 +67,9 @@ int	check_var_name(char *str)
 char	*substitute_not_in_env(char *str)
 {
 	char	*no_dollar;
-	int		i;
+	//int		i;
 
-	i = 0;
+	//i = 0;
 	if (ft_str_equ(str, "LAST_RET_VALUE"))
 		return (ft_strdup_cu("0"));
 	if (str[0] == '$')

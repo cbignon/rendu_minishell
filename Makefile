@@ -59,10 +59,6 @@ ifeq ($(config), debug)
   FLAGS += -fstack-protector
 endif
 
-ifeq ($(config), release)
-#   FLAGS += -O3
-endif
-
 ifeq ($(config), memory)
   FLAGS += -fsanitize=address
   FLAGS += -DDEBUG
@@ -215,9 +211,10 @@ libft:
 
 prep:
 	$(SILENT)mkdir -p ${OBJDIRECTORIES}
-	$(SILENT)mkdir -p logs
 	touch prep
 
 $(OBJDIR)%.o: %.c
 	@echo $(notdir $<)
 	$(CC) $(FLAGS) $(INCLUDE) -c $<  -o $(OBJDIR)$(<:.c=.o)
+
+.PHONY: ${NAME} all compile prep clean fclean re valgrind libft bonus

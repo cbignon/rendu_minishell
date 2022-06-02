@@ -36,19 +36,19 @@ void	ft_remove_var(char ***env, char *var)
 		j++;
 	}
 	new_env[j] = NULL;
-	ft_tabfree_cu((void ***)&(*env), ft_tablen(*env), 0);
+	ft_tabfree_cu((void ***)env, ft_tablen(*env), 0);
 	*env = new_env;
 }
 
 void	ft_unset(t_process *p)
 {
 	int		i;
-	char	**new_env;
+	//char	**new_env;
 	char	***env;
 	char	*var_name;
 
 	i = 0;
-	new_env = NULL;
+	//new_env = NULL;
 	env = choose_env(p);
 	if (!p->args[1])
 		return ;

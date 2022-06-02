@@ -63,12 +63,12 @@ void	wait_processes(t_process *processes)
 void	run_processes(t_process *processes)
 {
 	int			index;
-	int			status;
-	t_process	*p;
+	//int			status;
+	//t_process	*p;
 
-	status = 0;
+	//status = 0;
 	index = 0;
-	p = NULL;
+	//p = NULL;
 	create_pipe(processes);
 	while (processes[index].val)
 	{

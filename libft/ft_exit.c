@@ -12,12 +12,11 @@
 
 #include "libft.h"
 #include <signal.h>
-#include <readline/readline.h>
 
 void	ft_exit(char *message, int return_value, int fd)
 {
 	if (message)
 		ft_putendl_fd(message, fd);
-	rl_clear_history();
+	//rl_clear_history();
 	exit(gc_clear(return_value));
 }

@@ -52,10 +52,6 @@ ifeq ($(config), debug)
   FLAGS += -fstack-protector
 endif
 
-ifeq ($(config), release)
-#   FLAGS += -O3
-endif
-
 ifeq ($(config), memory)
   FLAGS += -fsanitize=address
   FLAGS += -DDEBUG
@@ -178,4 +174,6 @@ prep:
 
 $(OBJDIR)%.o: %.c
 	@echo $(notdir $<)
-	$(SILENT) $(CC) $(FLAGS) $(INCLUDE) -c $<  -o $(OBJDIR)$(<:.c=.o)
+	$(CC) $(FLAGS) $(INCLUDE) -c $<  -o $(OBJDIR)$(<:.c=.o)
+
+.PHONY: ${NAME} all compile clean fclean re bonus prep
