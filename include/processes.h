@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   processes.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:14:16 by atron             #+#    #+#             */
-/*   Updated: 2022/04/29 15:08:45 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/02 13:11:22 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_redirect
 	int				from_fd;
 	int				to_fd;
 	char			*file;
+	t_bool			quotes;
 }	t_redirect;
 
 typedef struct s_process

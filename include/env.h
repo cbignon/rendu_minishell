@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:44:21 by cbignon           #+#    #+#             */
-/*   Updated: 2022/04/26 15:45:42 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/02 13:14:56 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void	ft_dup_environ(t_process *p);
 int		ft_str_has_char(char *str, char c);
 char	*get_pwd(void);
 char	*get_expanded_line(char *line);
+int		is_quoted(char *str);
 
 #endif

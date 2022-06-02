@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_syntax_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:22:02 by atron             #+#    #+#             */
-/*   Updated: 2022/04/28 14:34:44 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/02 12:59:48 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	verify_syntax(char *cmd)
 		return (2);
 	if (is_meta(cmd[index]))
 		return (1);
+	if (cmd[0] == '|') //TODO: skip spaces
+		return (-1);
 	index = 0;
 	while (cmd[index])
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 13:44:05 by cbignon           #+#    #+#             */
-/*   Updated: 2022/05/11 15:36:44 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/02 13:24:23 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	formatting_line(char **out, char **line)
 	}
 }
 
-char	*get_stdin(char *delim, int *val)
+char	*get_stdin(char *delim, int *val, t_bool quoted)
 {
 	char	*out;
 	char	*line;
@@ -43,7 +43,8 @@ char	*get_stdin(char *delim, int *val)
 		line = read_heredoc(val);
 		if (!line)
 			return (NULL);
-		line = get_expanded_line(line);
+		if (!quoted)
+			line = get_expanded_line(line);
 		if (ft_str_equ(delim, line))
 		{
 			gc_delone((void **)&line, 0);

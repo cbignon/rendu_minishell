@@ -19,6 +19,8 @@ static void	copy_no_quote(char *str, int length, int *lst)
 
 	index = 0;
 	tmp = 0;
+	if (!str)
+		return ;
 	while (index < length)
 	{
 		while (in_index(lst, tmp))

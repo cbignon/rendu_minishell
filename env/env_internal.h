@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:48:45 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/02 17:00:46 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/02 17:48:03 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ENV_INTERNAL_H
 
 # include "processes.h"
+# include "env.h"
 # include "utils.h"
 # include "libft.h"
 # include <readline/readline.h>
@@ -136,7 +137,6 @@ int		count_words_protected(char *str, char c, int count, int i);
 int		parse_var_name(char *var_name);
 char	*get_var_name(int std_err, char *var);
 char	*get_var_value(char *var);
-int		is_quoted(char *str);
 
 /*******************************************************************************
  * ENV_UTILS.C 

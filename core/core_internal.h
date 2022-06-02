@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core_internal.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 12:23:24 by atron             #+#    #+#             */
-/*   Updated: 2022/05/11 15:02:15 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/02 13:26:07 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		close_fd(t_process *p);
  * REDIRECT.C 
  * */
 void	setup_redirect(t_process *p);
-char	*get_stdin(char *delim, int *val);
+char	*get_stdin(char *delim, int *val, t_bool quoted);
 
 /*******************************************************************************
  * HEREDOC.C 
