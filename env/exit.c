@@ -17,7 +17,8 @@ void	exit_builtin(t_process *p)
 	int	count;
 
 	count = ft_count_args(p->args);
-	ft_putendl_fd("exit", p->std_out);
+	if (p->proc_count <= 1)
+		ft_putendl_fd("exit", p->std_out);
 	if (count > 2)
 		p->res = ft_printerr(p->std_err, p->cmd, NULL,
 				"too many arguments");
