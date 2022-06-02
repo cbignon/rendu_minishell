@@ -89,15 +89,19 @@ void	minishell(void)
 int	main(void)
 {
 	struct sigaction	sa_int;
-	struct sigaction	sa_self;
+	struct sigaction	sa_quit;
 
 	sigemptyset(&sa_int.sa_mask);
-	sigemptyset(&sa_self.sa_mask);
+	sigemptyset(&sa_quit.sa_mask);
 	sa_int.sa_sigaction = &int_handler;
 	sa_int.sa_flags = SA_SIGINFO;
+	sa_quit.sa_handler = SIG_IGN;
 	if (sigaction(SIGINT, &sa_int, NULL))
 		ft_exit("Signal error!", -1, 1);
+	if (signal(SIGQUIT, sa_quit.sa_handler))
+		ft_exit("Signal error!", -1, 1);
 	sigaddset(&sa_int.sa_mask, SIGINT);
+	sigaddset(&sa_quit.sa_mask, SIGINT);
 	minishell();
 	rl_clear_history();
 	return (0);
