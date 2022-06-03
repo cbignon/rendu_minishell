@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 09:19:40 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/02 10:15:06 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/02 17:43:06 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,5 @@ char	*get_value_from_global(char *var_name)
 	line = ft_strdup_cu(ft_find_in_tab(env->gl_env, var_name));
 	verify_ptr(line);
 	ret = get_var_value(line);
-	gc_delone((void **)line, 0);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:35:12 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/02 10:12:43 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/02 17:39:48 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,7 @@ int	check_var_name(char *str)
 char	*substitute_not_in_env(char *str)
 {
 	char	*no_dollar;
-	//int		i;
 
-	//i = 0;
 	if (ft_str_equ(str, "LAST_RET_VALUE"))
 		return (ft_strdup_cu("0"));
 	if (str[0] == '$')

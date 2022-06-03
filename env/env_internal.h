@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_internal.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:48:45 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/02 13:14:40 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:48:03 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ char	*parse_dollar(char *str, int i, int j, char *full);
 void	to_keep_simple_quote(char *str, int *i, int *j, char *to_keep);
 void	to_keep_double_quote(char *str, int *i, char *to_keep, int *k);
 void	to_keep_no_doll(char *str, int *i, char *to_keep, int *j);
+int		*get_dble_option(void);
 
 /*******************************************************************************
  * HEREDOC_EXPANSION.C 

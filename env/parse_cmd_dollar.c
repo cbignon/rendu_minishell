@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:07:08 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/02 12:47:22 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/02 17:43:49 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	*ft_get_expanded_cmd(char *cmd)
 	ret = ft_tab_to_str(final, ' ', size_tab_to_str(final));
 	ft_tabfree_cu((void ***)&tmp, ft_tablen(tmp), 0);
 	ft_tabfree_cu((void ***)&final, ft_tablen(final), 0);
-	printf("CMD EXP = |%s|\n", ret);
 	return (ret);
 }
 
@@ -67,6 +66,12 @@ void	keep_invalid_dollar(char *str, int *i, int *k, char *to_keep)
 	to_keep[*k] = '\0';
 }
 
+static void	invalid_doll_digit(char *str, int *i, char *to_expand, int *j)
+{
+	to_expand[(*j)++] = str[(*i)++];
+	to_expand[*j] = '\0';
+}
+
 void	to_expand_dollar(char *str, int *i, char *to_expand, int *j)
 {
 	int	doll;
@@ -81,11 +86,7 @@ void	to_expand_dollar(char *str, int *i, char *to_expand, int *j)
 			while (str[*i] && (ft_is_valid_var_char(str[*i]) || str[*i] == '?'))
 			{
 				if (*i == (doll + 1) && ft_isdigit(str[*i]))
-				{
-					to_expand[(*j)++] = str[(*i)++];
-					to_expand[*j] = '\0';
-					return ;
-				}
+					return (invalid_doll_digit(str, i, to_expand, j));
 				to_expand[(*j)++] = str[(*i)++];
 				if (str[(*i)] == '\"' || str[(*i)] == '\'')
 				{
@@ -93,8 +94,6 @@ void	to_expand_dollar(char *str, int *i, char *to_expand, int *j)
 					break ;
 				}
 			}
-			if (str[(*i)] != '$' && str[(*i)] != '\"' && str[(*i)] != '\'')
-				to_expand[(*j)++] = '\0';
 		}
 		else
 			break ;
