@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:34:59 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/02 13:25:37 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/02 14:22:38 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ char	*read_heredoc(int *val)
 	{
 		*val = 4;
 		return (NULL);
-	}
+	}/*
 	if (*line == 0)
 	{
 		ft_printerr(2, "warning", "here-document", " waited 'delim'");
 		return (NULL);
-	}
+	}*/
 	return (line);
 }
 

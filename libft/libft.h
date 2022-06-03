@@ -127,7 +127,6 @@ int				ft_tablen(char **tab);
 void			ft_exit(char *message, int return_value, int fd);
 char			*ft_strjoin_free_cu(char const *s1, char const *s2,
 					int (del)(void **, int));
-char			*ft_readline(char *prompt);
 
 /*Functions for custom allocator*/
 /******************************************************************************/

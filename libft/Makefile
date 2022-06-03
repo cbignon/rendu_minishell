@@ -139,7 +139,6 @@ SRCS += ft_tabfree.c
 SRCS += ft_chara_count.c
 SRCS += get_empty_str.c
 SRCS += ft_exit.c
-SRCS += ft_readline.c
 
 SRCS += garbage_collection/gc_use.c
 SRCS += garbage_collection/move_to_gc.c
