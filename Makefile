@@ -6,7 +6,7 @@
 #    By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 16:50:21 by atron             #+#    #+#              #
-#    Updated: 2022/06/03 13:45:17 by cbignon          ###   ########.fr        #
+#    Updated: 2022/06/03 14:15:35 by cbignon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -170,6 +170,7 @@ SRCS += utils/append_index.c
 SRCS += utils/malloc_verify.c
 SRCS += utils/ft_skip_quotes.c
 SRCS += utils/ft_readline.c
+SRCS += utils/meta_utils.c
 
 #RULES
 #############################################################

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 17:10:12 by atron             #+#    #+#             */
-/*   Updated: 2022/06/03 14:00:36 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/03 14:20:58 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	*ft_readline(char *prompt)
 
 	if (g_int)
 		return (NULL);
-
 	line = NULL;
 	ft_putstr_fd(prompt, 1);
 	gnl_res = get_next_line(0, &line);

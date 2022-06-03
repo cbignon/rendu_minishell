@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:06:17 by atron             #+#    #+#             */
-/*   Updated: 2022/06/03 13:41:01 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/03 14:26:20 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ int	main(void)
 {
 	struct sigaction	sa_int;
 	struct sigaction	sa_quit;
-	rl_catch_signals = 1;
 
+	rl_catch_signals = 1;
 	sigemptyset(&sa_int.sa_mask);
 	sigemptyset(&sa_quit.sa_mask);
 	sa_int.sa_sigaction = &int_handler;

@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 13:41:21 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/03 11:21:43 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 14:06:48 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,7 @@ void	ft_pwd(t_process *p)
 	pwd = NULL;
 	pwd = get_pwd();
 	if (pwd == NULL)
-	{
 		pwd = ft_getenv("PWD", p);
-		// p->res = 1;
-		// return ((void)ft_printerr(p->std_err, p->cmd, NULL, "Failed"));
-	}
 	ft_putendl_fd(pwd, p->std_out);
 	gc_delone((void **)&pwd, 0);
 }

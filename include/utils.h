@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:47:19 by atron             #+#    #+#             */
-/*   Updated: 2022/06/02 13:38:06 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/03 14:13:51 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	verify_ptr(void *ptr);
 void	*malloc_bzero(int size);
 char	*skip_quotes(char *str, int index);
 char	*ft_readline(char *prompt);
+t_bool	verify_meta(char *str, int index);
 
 void	*malloc_verify_ncu(int size);
 

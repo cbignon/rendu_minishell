@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:34:59 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/03 14:13:40 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/03 14:32:17 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,29 +74,29 @@ void	setup_heredocs(t_process *processes)
 
 void	setup_heredoc(t_process *p)
 {
-	int		index;
+	int		i;
 	int		heredoc_nb;
 	char	*file;
 	char	*delim;
 	int		fd;
 
-	index = 0;
+	i = 0;
 	heredoc_nb = 0;
-	while (p->redir[index].type != NONE)
+	while (p->redir[i].type != NONE)
 	{
-		if (p->redir[index].type == STDIN_HEREDOC)
+		if (p->redir[i].type == STDIN_HEREDOC)
 		{
-			delim = p->redir[index].file;
-			p->redir[index].quotes = is_quoted(delim);
+			delim = p->redir[i].file;
+			p->redir[i].quotes = is_quoted(delim);
 			delim = skip_quotes(delim, 0);
-			create_heredoc(p, index, heredoc_nb);
-			fd = open(p->redir[index].file, O_CREAT | O_RDWR | O_TRUNC, 0777);
-			file = get_stdin(delim, &p->redir[index].type, p->redir[index].quotes);
+			create_heredoc(p, i, heredoc_nb);
+			fd = open(p->redir[i].file, O_CREAT | O_RDWR | O_TRUNC, 0777);
+			file = get_stdin(delim, &p->redir[i].type, p->redir[i].quotes);
 			ft_putstr_fd(file, fd);
 			close(fd);
 			gc_delone((void **)&delim, 0);
 			heredoc_nb++;
 		}
-		index++;
+		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:28:45 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/01 13:56:43 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 14:24:27 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ char	*ft_get_bin_path(char *cmd, char **env)
 	return (bin_path);
 }
 
+static void	exec_no_binpath(t_process *p)
+{
+	gc_clear(0);
+	p->res = ft_printerr(p->std_err, p->cmd, NULL, "no such file or directory");
+}
+
 void	ft_exec_bin(t_process *p)
 {
 	char		*bin_path;
@@ -62,9 +68,5 @@ void	ft_exec_bin(t_process *p)
 		gc_delone((void **)bin_path, 0);
 	}
 	else
-	{
-		gc_clear(0);
-		p->res = ft_printerr(p->std_err, p->cmd, NULL,
-				"no such file or directory");
-	}
+		exec_no_binpath(p);
 }

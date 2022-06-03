@@ -3,41 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_syntax_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:22:02 by atron             #+#    #+#             */
-/*   Updated: 2022/06/03 14:00:56 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/03 14:20:07 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils_internal.h"
-
-t_bool	is_meta(char c)
-{
-	if (c == '<' || c == '>' || c == '|')
-		return (TRUE);
-	return (FALSE);
-}
-
-t_bool	verify_meta(char *str, int index)
-{
-	int		num;
-	char	c;
-
-	num = ft_chara_count(&str[index]);
-	if ((str[index] == '>' || str[index] == '<') && num > 2)
-		return (FALSE);
-	if (str[index] == '|' && num > 1)
-		return (FALSE);
-	c = str[index];
-	while (str[index] && str[index] == c)
-		index++;
-	while (str[index] == ' ')
-		index++;
-	if (is_meta(str[index]))
-		return (FALSE);
-	return (TRUE);
-}
 
 t_bool	is_quote(char c)
 {
@@ -62,8 +35,8 @@ int	space_str(char *str)
 
 int	skip_spaces(char *cmd)
 {
-	int index;
-	
+	int	index;
+
 	index = 0;
 	if (!cmd)
 		return (0);
@@ -81,10 +54,9 @@ int	verify_syntax(char *cmd)
 	int	index;
 	int	tmp;
 
-	index = ft_strlen(cmd) - 1;
 	if (space_str(cmd) == 2)
 		return (2);
-	if (is_meta(cmd[index]))
+	if (is_meta(cmd[ft_strlen(cmd) - 1]))
 		return (1);
 	index = skip_spaces(cmd);
 	if (cmd[index] == '|')

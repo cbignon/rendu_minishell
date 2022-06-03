@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 11:06:09 by atron             #+#    #+#             */
-/*   Updated: 2022/03/23 16:55:07 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 14:14:30 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,6 @@
 # include <readline/history.h>
 # include <dirent.h>
 
+t_bool	verify_meta(char *str, int index);
+t_bool	is_meta(char c);
 #endif
