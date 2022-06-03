@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:49:22 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/03 10:58:31 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 14:21:25 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ char	*get_expanded_line(char *line)
 	i = 0;
 	if (ft_str_has_char(line, '$') == -1)
 		return (line);
-	//tmp = split_protect_quoted(line, ' ');
 	tmp = ft_split(line, ' ');
 	final = malloc_verify(sizeof(char *) * (ft_tablen(tmp) + 1));
 	while (tmp[i])
