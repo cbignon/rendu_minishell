@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:56:56 by cbignon           #+#    #+#             */
-/*   Updated: 2022/05/31 15:17:48 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 13:01:11 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,11 @@ char	*find_in_path(char **path, char *cmd)
 	i = 0;
 	if (!path)
 		return (NULL);
-	dp = opendir(path[i]);
-	while (!dp && path[i])
-		dp = opendir(path[i++]);
+	dp = NULL;
 	while (path[i])
 	{
-		if (!dp)
-		{
-			i++;
-			if (path[i])
-				dp = opendir(path[i]);
-			continue ;
-		}
+		while (!dp && path[i++])
+			dp = opendir(path[i]);
 		dirp = readdir(dp);
 		while (dirp)
 		{
