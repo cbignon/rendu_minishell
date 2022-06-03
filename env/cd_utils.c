@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:43:00 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/03 13:47:07 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 14:02:53 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_bool	find_in_cdpath(char *path, char *name)
 {
-	DIR 			*dir;
+	DIR				*dir;
 	struct dirent	*info;
 
 	dir = opendir(path);
