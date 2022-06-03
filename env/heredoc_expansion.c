@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:49:22 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/03 10:23:01 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 10:45:58 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ char	*parse_dollar_line(char *str, int i, int j, char *full)
 			to_expand_dollar(str, &i, to_expand, &j);
 		else if (str[i] == '\'' || str[i] == '\"')
 			to_keep_quote_heredoc(str, &i, to_keep, &k);
-		// else if (str[i] == '\"')
-		// 	to_keep_double_quote(str, &i, to_keep, &k);
 		else if (str[i] && str[i] != '\'' && str[i] != '$' && str[i] != '\"')
 			to_keep_no_doll(str, &i, to_keep, &k);
 		to_expand = ft_expand(to_expand, 0, 0);
@@ -84,7 +82,8 @@ char	*get_expanded_line(char *line)
 	i = 0;
 	if (ft_str_has_char(line, '$') == -1)
 		return (line);
-	tmp = split_protect_quoted(line, ' ');
+	//tmp = split_protect_quoted(line, ' ');
+	tmp = ft_split(line, ' ');
 	final = malloc_verify(sizeof(char *) * (ft_tablen(tmp) + 1));
 	while (tmp[i])
 	{

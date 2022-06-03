@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 12:28:22 by cbignon           #+#    #+#             */
-/*   Updated: 2022/04/26 17:00:55 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 10:50:37 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static int	get_word_len_quote(char *str, int *i, int *ret, int *size)
 	if (str[*i] == '\'')
 	{
 		*size = ft_strclen(str + *i + 1, '\'') + 2;
-		if (str[*i + *size] == ' ' || str[*i + *size] == '\0')
+		if (str[*i + *size] && (str[*i + *size] == ' '
+			|| str[*i + *size] == '\0'))
 			return (1);
 		*ret += *size;
 		*i += *size;
@@ -25,8 +26,9 @@ static int	get_word_len_quote(char *str, int *i, int *ret, int *size)
 	}
 	if (str[*i] == '\"')
 	{
-		*size = ft_strclen(str + *i + 1, '\"') + 2;
-		if (str[*i + *size] == ' ' || str[*i + *size] == '\0')
+		*size = 1;
+		if (str[*i + *size] && (str[*i + *size] == ' '
+			|| str[*i + *size] == '\0'))
 			return (1);
 		*ret += *size;
 		*i += *size;
