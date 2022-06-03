@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 12:22:53 by atron             #+#    #+#             */
-/*   Updated: 2022/04/29 14:15:18 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 11:05:40 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,19 @@
 const char	*get_prompt(void)
 {
 	char	*pwd;
+	char	*title;
 	char	*prompt;
 
 	pwd = get_pwd();
-	prompt = ft_strjoin_cu("\001\e[1m\e[92m\002minishell:", pwd);
+	title = ft_strdup_cu("\001\e[1m\e[92m\002minishell:");
+	if (pwd)
+		prompt = ft_strjoin_cu(title, pwd);
+	else
+		prompt = title;
 	verify_ptr(prompt);
 	prompt = ft_strjoin_cu(prompt, "> \001\e[0m\002");
 	verify_ptr(prompt);
 	gc_delone((void **)&pwd, 0);
+	gc_delone((void **)&title, 0);
 	return (prompt);
 }

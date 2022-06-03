@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 13:13:30 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/03 10:05:55 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/03 11:26:35 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 int	ft_change_dir( int std_err, char *dir_n)
 {
 	struct stat	info;
+	int ret_changedir = 0;
 
-	if (chdir(dir_n) == -1)
+	ret_changedir = chdir(dir_n);
+	printf("ret_changedir = %d\ndir_n = %s\n", ret_changedir, dir_n);
+	if (ret_changedir == -1)
 	{
 		if (stat(dir_n, &info) == -1)
 			return (ft_printerr(std_err, "cd", dir_n,
