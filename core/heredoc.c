@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:34:59 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/02 14:22:38 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/03 13:59:01 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,24 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+t_bool	g_int = FALSE;
+
 char	*read_heredoc(int *val)
 {
 	char	*line;
 
 	line = ft_readline(">");
-	if (!line)
+	if (!line && errno == EINTR)
 	{
 		*val = 4;
+		g_int = TRUE;
 		return (NULL);
-	}/*
-	if (*line == 0)
+	}
+	else if (!line)
 	{
 		ft_printerr(2, "warning", "here-document", " waited 'delim'");
 		return (NULL);
-	}*/
+	}
 	return (line);
 }
 
@@ -83,8 +86,6 @@ void	setup_heredoc(t_process *p)
 		if (p->redir[index].type == STDIN_HEREDOC)
 		{
 			delim = p->redir[index].file;
-			
-			printf("%s\n", delim);
 			p->redir[index].quotes = is_quoted(delim);
 			delim = skip_quotes(delim, 0);
 			create_heredoc(p, index, heredoc_nb);

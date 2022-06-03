@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:06:17 by atron             #+#    #+#             */
-/*   Updated: 2022/06/02 13:01:44 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/03 13:41:01 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
+
+extern t_bool	g_int;
 
 static char	*invalid_cmd(char *cmd)
 {
@@ -80,6 +82,7 @@ void	minishell(void)
 			run_processes(processes);
 			wait_processes(processes);
 		}
+		g_int = FALSE;
 		clean_processes();
 		gc_delone((void **)&cmd, 0);
 	}
@@ -89,6 +92,7 @@ int	main(void)
 {
 	struct sigaction	sa_int;
 	struct sigaction	sa_quit;
+	rl_catch_signals = 1;
 
 	sigemptyset(&sa_int.sa_mask);
 	sigemptyset(&sa_quit.sa_mask);

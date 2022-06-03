@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:22:02 by atron             #+#    #+#             */
-/*   Updated: 2022/06/02 12:59:48 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/03 14:00:56 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ t_bool	verify_meta(char *str, int index)
 {
 	int		num;
 	char	c;
-	//int		index2;
 
-	//index2 = index;
 	num = ft_chara_count(&str[index]);
 	if ((str[index] == '>' || str[index] == '<') && num > 2)
 		return (FALSE);
@@ -62,6 +60,22 @@ int	space_str(char *str)
 	return (2);
 }
 
+int	skip_spaces(char *cmd)
+{
+	int index;
+	
+	index = 0;
+	if (!cmd)
+		return (0);
+	while (cmd[index])
+	{
+		if (cmd[index] != ' ')
+			return (index);
+		index++;
+	}
+	return (index);
+}
+
 int	verify_syntax(char *cmd)
 {
 	int	index;
@@ -72,9 +86,9 @@ int	verify_syntax(char *cmd)
 		return (2);
 	if (is_meta(cmd[index]))
 		return (1);
-	if (cmd[0] == '|') //TODO: skip spaces
+	index = skip_spaces(cmd);
+	if (cmd[index] == '|')
 		return (-1);
-	index = 0;
 	while (cmd[index])
 	{
 		if (is_quote(cmd[index]))

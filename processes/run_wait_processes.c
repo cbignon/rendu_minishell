@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_wait_processes.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:37:58 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/01 13:32:17 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 13:58:09 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
+
+extern t_bool	g_int;
 
 static int	get_status(int status)
 {
@@ -63,12 +65,10 @@ void	wait_processes(t_process *processes)
 void	run_processes(t_process *processes)
 {
 	int			index;
-	//int			status;
-	//t_process	*p;
 
-	//status = 0;
+	if (g_int)
+		return ;
 	index = 0;
-	//p = NULL;
 	create_pipe(processes);
 	while (processes[index].val)
 	{
