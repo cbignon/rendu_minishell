@@ -6,10 +6,11 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:34:59 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/03 13:59:01 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/03 14:13:40 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "processes.h"
 #include "core_internal.h"
 #include "env.h"
 #include <fcntl.h>
@@ -18,7 +19,7 @@
 
 t_bool	g_int = FALSE;
 
-char	*read_heredoc(int *val)
+char	*read_heredoc(t_redirect_type *val)
 {
 	char	*line;
 

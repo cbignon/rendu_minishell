@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_processes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 16:52:10 by atron             #+#    #+#             */
-/*   Updated: 2022/04/28 10:42:14 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 14:16:58 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	clean_redirs(t_redirect *redirs)
 	index = 0;
 	while (redirs[index].type != NONE)
 	{
-		if (redirs[index].type == STDIN_HEREDOC)
+		if (redirs[index].type == STDIN_HEREDOC
+			|| redirs[index].type == STOPPED_HEREDOC)
 			unlink(redirs[index].file);
 		index++;
 	}
