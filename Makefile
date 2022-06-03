@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+         #
+#    By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 16:50:21 by atron             #+#    #+#              #
-#    Updated: 2022/06/02 13:34:18 by Darkkoll         ###   ########.fr        #
+#    Updated: 2022/06/03 13:45:17 by cbignon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -144,6 +144,7 @@ SRCS += env/expand_utils.c
 SRCS += env/parse_cmd_dollar.c
 SRCS += env/heredoc_expansion.c
 SRCS += env/cd.c
+SRCS += env/cd_utils.c
 SRCS += env/echo.c
 SRCS += env/pwd.c
 SRCS += env/ft_split_space_protect.c

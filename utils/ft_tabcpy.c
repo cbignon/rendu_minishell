@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:46:58 by atron             #+#    #+#             */
-/*   Updated: 2022/06/01 14:04:10 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 13:32:57 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,10 @@ char	**ft_tabcpy(char **tab)
 
 char	**ft_tabncpy(char **tab, int n)
 {
-	//int		size;
 	char	**out;
 	int		index;
 
 	index = 0;
-	//size = ft_tablen(tab);
 	out = (char **)malloc_verify(sizeof(char *) * (n + 1));
 	if (!out)
 		return (NULL);

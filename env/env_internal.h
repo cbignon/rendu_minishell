@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:48:45 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/02 17:48:03 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 13:55:25 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,16 @@ char	*get_pwd(void);
  */
 int		ft_change_dir(int std_err, char *dirname);
 int		ft_cd_home(t_process *p);
-int		ft_cd_oldpath(t_process *p);
+void	ft_cd_oldpath(t_process *p);
 void	ft_cd(t_process *p);
+char	*get_cdpath(char *arg);
+
+/*******************************************************************************
+ * CD_UTILS.C 
+ */
+char	**get_relative(char *path);
+t_bool	is_absolute(const char *path);
+t_bool	find_in_cdpath(char *path, char *name);
 
 /*******************************************************************************
  * PARSE_CMD_DOLLAR.C 
