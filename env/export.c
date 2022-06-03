@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 14:34:49 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/01 13:59:57 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/02 19:38:52 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_add_to_env(char ***env, char *var_name, char *var_value)
 	new_env[i] = ft_strdup_cu(new_var);
 	verify_ptr(new_env[i]);
 	new_env[i + 1] = NULL;
-	ft_tabfree_cu((void ***)&(*env), ft_tablen(*env), 0);
+	ft_tabfree_cu((void ***)env, ft_tablen(*env), 0);
 	*env = new_env;
 	gc_delone((void **)&new_var, 0);
 	gc_delone((void **)&var_name, 0);
@@ -113,7 +113,7 @@ void	modify_var_in_env(char ***env, char *var_name, char *new_value)
 			new_env[i] = ft_strdup_cu((*env)[i]);
 	}
 	new_env[i] = NULL;
-	ft_tabfree_cu((void ***)&(*env), ft_tablen(*env), 0);
+	ft_tabfree_cu((void ***)env, ft_tablen(*env), 0);
 	*env = new_env;
 	gc_delone((void **)&var, 0);
 	gc_delone((void **)&var_name, 0);

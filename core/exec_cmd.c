@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:32:26 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/01 14:15:43 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 10:53:03 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	exec_cmd(t_process *p)
 				"No such file or directory");
 	else if (ft_get_bin_path(p->cmd, *env) != NULL)
 		ft_exec_bin(p);
+	else if (!p->cmd[0])
+		return (ft_export(0));
 	else
 		p->res = 126 + ft_printerr(p->std_err, p->cmd, NULL,
 				"command not found");
