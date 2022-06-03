@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:49:22 by cbignon           #+#    #+#             */
-/*   Updated: 2022/04/26 16:32:28 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 10:23:01 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ void	keep_invalid_dollar_line(char *str, int *i, int *k, char *to_keep)
 	to_keep[*k] = '\0';
 }
 
+void	to_keep_quote_heredoc(char *str, int *i, char *to_keep, int *k)
+{
+	to_keep[*k] = str[*i];
+	(*i)++;
+	(*k)++;
+	to_keep[*k] = '\0';
+}
+
 char	*parse_dollar_line(char *str, int i, int j, char *full)
 {
 	char	*to_expand;
@@ -54,10 +62,10 @@ char	*parse_dollar_line(char *str, int i, int j, char *full)
 			keep_invalid_dollar_line(str, &i, &k, to_keep);
 		else if (str[i] == '$')
 			to_expand_dollar(str, &i, to_expand, &j);
-		else if (str[i] == '\'')
-			to_keep_simple_quote(str, &i, &k, to_keep);
-		else if (str[i] == '\"')
-			to_keep_double_quote(str, &i, to_keep, &k);
+		else if (str[i] == '\'' || str[i] == '\"')
+			to_keep_quote_heredoc(str, &i, to_keep, &k);
+		// else if (str[i] == '\"')
+		// 	to_keep_double_quote(str, &i, to_keep, &k);
 		else if (str[i] && str[i] != '\'' && str[i] != '$' && str[i] != '\"')
 			to_keep_no_doll(str, &i, to_keep, &k);
 		to_expand = ft_expand(to_expand, 0, 0);
