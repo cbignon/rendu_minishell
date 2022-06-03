@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 11:23:51 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/02 17:38:46 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 14:55:51 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,9 @@ void	to_keep_no_doll(char *str, int *i, char *to_keep, int *j)
 
 int	*get_dble_option(void)
 {
-	static int	*in_dble;
+	static int	in_dble = -1;
 
-	if (!in_dble)
-	{
-		in_dble = (int *)malloc_verify(sizeof(int));
-		*in_dble = -1;
-	}
-	return (in_dble);
+	return (&in_dble);
 }
 
 char	*parse_dollar(char *str, int i, int j, char *full)
