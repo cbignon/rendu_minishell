@@ -43,7 +43,7 @@ char	*ft_str_extend_cu(char *str, int dest_size,
 	str_size = ft_strlen(str);
 	if (dest_size < str_size)
 		return (NULL);
-	dest = (char *)gc_malloc(sizeof(*dest) * dest_size + 1, gc);
+	dest = (char *)gc_malloc(sizeof(*dest) * dest_size + 1);
 	if (!dest)
 		return (NULL);
 	ft_memcpy(dest, str, str_size);

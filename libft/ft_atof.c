@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 15:05:44 by root              #+#    #+#             */
-/*   Updated: 2022/03/03 15:34:10 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/05 11:18:28 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_double_result	ft_atof(char *str)
 		ft_tabfree((void ***)&tab, ft_tablen(tab), 0);
 		result.result = FALSE;
 		result.message = "Invalid string!";
+		result.value = 0.0f;
 		return (result);
 	}
 	result.value = (double_t)ft_atoll(tab[0]);

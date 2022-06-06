@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:37:58 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/03 13:58:09 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/06 16:03:58 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-
-extern t_bool	g_int;
 
 static int	get_status(int status)
 {
@@ -66,7 +64,7 @@ void	run_processes(t_process *processes)
 {
 	int			index;
 
-	if (g_int)
+	if (get_interuption(-1))
 		return ;
 	index = 0;
 	create_pipe(processes);

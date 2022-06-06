@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+         #
+#    By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 16:50:21 by atron             #+#    #+#              #
-#    Updated: 2022/06/03 14:15:35 by cbignon          ###   ########.fr        #
+#    Updated: 2022/06/06 16:07:16 by Darkkoll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -171,6 +171,7 @@ SRCS += utils/malloc_verify.c
 SRCS += utils/ft_skip_quotes.c
 SRCS += utils/ft_readline.c
 SRCS += utils/meta_utils.c
+SRCS += utils/interuption.c
 
 #RULES
 #############################################################

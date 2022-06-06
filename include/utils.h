@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:47:19 by atron             #+#    #+#             */
-/*   Updated: 2022/06/03 14:13:51 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/06 16:06:09 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,12 @@ t_bool	is_quote(char c);
 int		*append_index(int *lst, int elem);
 t_bool	in_index(int *lst, int value);
 void	*malloc_verify(int size);
-void	verify_ptr(void *ptr);
+void	verify_ptr(const void *ptr);
 void	*malloc_bzero(int size);
 char	*skip_quotes(char *str, int index);
 char	*ft_readline(char *prompt);
 t_bool	verify_meta(char *str, int index);
+t_bool	get_interuption(t_bool value);
 
 void	*malloc_verify_ncu(int size);
 

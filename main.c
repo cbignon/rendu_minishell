@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:06:17 by atron             #+#    #+#             */
-/*   Updated: 2022/06/03 14:26:20 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/06 16:02:16 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-
-extern t_bool	g_int;
 
 static char	*invalid_cmd(char *cmd)
 {
@@ -82,7 +80,7 @@ void	minishell(void)
 			run_processes(processes);
 			wait_processes(processes);
 		}
-		g_int = FALSE;
+		get_interuption(FALSE);
 		clean_processes();
 		gc_delone((void **)&cmd, 0);
 	}

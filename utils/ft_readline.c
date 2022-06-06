@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 17:10:12 by atron             #+#    #+#             */
-/*   Updated: 2022/06/03 14:20:58 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/06 16:04:15 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "utils_internal.h"
 #include <readline/readline.h>
 #include <errno.h>
-
-extern t_bool	g_int;
 
 char	*clean_line(char *line)
 {
@@ -35,7 +33,7 @@ char	*ft_readline(char *prompt)
 	char	*line;
 	int		gnl_res;
 
-	if (g_int)
+	if (get_interuption(-1))
 		return (NULL);
 	line = NULL;
 	ft_putstr_fd(prompt, 1);

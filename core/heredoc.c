@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:34:59 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/03 14:32:17 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/06 16:04:36 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-t_bool	g_int = FALSE;
-
 char	*read_heredoc(t_redirect_type *val)
 {
 	char	*line;
@@ -27,7 +25,7 @@ char	*read_heredoc(t_redirect_type *val)
 	if (!line && errno == EINTR)
 	{
 		*val = 4;
-		g_int = TRUE;
+		get_interuption(TRUE);
 		return (NULL);
 	}
 	else if (!line)

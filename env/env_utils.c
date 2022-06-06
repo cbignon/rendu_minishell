@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 09:19:40 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/02 17:43:06 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 20:22:32 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ char	*ft_getenv(char *name, t_process *p)
 	if (value)
 	{
 		len = ft_strclen(value, '=');
-		if (value + (len + 1))
-			return (value + (len + 1));
-		else
-			return (get_empty_str());
+		//if (value + (len + 1))
+		return (value + len + 1);
+		//else
+		//	return (get_empty_str());
 	}
 	return (NULL);
 }
