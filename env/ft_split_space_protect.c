@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 12:28:22 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/07 14:00:56 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/07 14:39:26 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ char	**split_protect_quoted(char *str, char c)
 	int		count_words;
 
 	count_words = count_words_protected(str, c, 0, 0);
-	printf("count = %d\n",count_words);
 	tab = malloc_verify(sizeof(char *) * (count_words + 1));
 	i = 0;
 	j = 0;
