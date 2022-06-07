@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gc_use.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 12:17:30 by atron             #+#    #+#             */
-/*   Updated: 2022/06/03 12:51:50 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/03 19:31:14 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	*gc_malloc(size_t size)
 	t_gc	*gc;
 	void	*ptr;
 
-	ptr = malloc(size);
 	gc = get_garbage_collection();
 	if (!gc)
 		return (NULL);
+	ptr = malloc(size);
 	if (!ptr)
 		return (NULL);
 	ft_lstadd_front(&gc->ptr_list, ft_lstnew(ptr));

@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 09:19:40 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/03 20:22:32 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/07 12:31:17 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,7 @@ char	*ft_getenv(char *name, t_process *p)
 	if (value)
 	{
 		len = ft_strclen(value, '=');
-		//if (value + (len + 1))
 		return (value + len + 1);
-		//else
-		//	return (get_empty_str());
 	}
 	return (NULL);
 }
@@ -85,6 +82,7 @@ char	*get_value_from_global(char *var_name)
 	char	*line;
 
 	env = ft_get_environ();
+	var_name = ft_strjoin_cu(var_name, "=");
 	line = ft_strdup_cu(ft_find_in_tab(env->gl_env, var_name));
 	verify_ptr(line);
 	ret = get_var_value(line);

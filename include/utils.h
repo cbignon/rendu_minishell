@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:47:19 by atron             #+#    #+#             */
-/*   Updated: 2022/06/06 16:06:09 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/07 12:36:08 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_bool	is_quote(char c);
 int		*append_index(int *lst, int elem);
 t_bool	in_index(int *lst, int value);
 void	*malloc_verify(int size);
-void	verify_ptr(const void *ptr);
+void	verify_ptr(void *ptr);
 void	*malloc_bzero(int size);
 char	*skip_quotes(char *str, int index);
 char	*ft_readline(char *prompt);

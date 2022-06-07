@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   environ.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:32:22 by cbignon           #+#    #+#             */
-/*   Updated: 2022/04/29 16:27:46 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/07 11:10:16 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env_internal.h"
 #include "core.h"
+
+extern char		**environ;
 
 char	***choose_env(t_process *p)
 {
@@ -31,7 +33,6 @@ char	***choose_env(t_process *p)
 
 t_env	*ft_get_environ(void)
 {
-	extern char		**environ;
 	static t_env	*env;
 	int				i;
 	int				tab_len;
@@ -58,19 +59,19 @@ t_env	*ft_get_environ(void)
 
 void	ft_dup_environ(t_process *p)
 {
-	t_env	*environ;
+	t_env	*env;
 	int		i;
 
-	environ = ft_get_environ();
+	env = ft_get_environ();
 	i = 0;
 	if (p->env == NULL)
 	{
 		p->env = (t_env *)malloc_verify(sizeof(t_env));
 		p->env->gl_env = (char **)malloc_verify(sizeof(char *)
-				* (ft_tablen(environ->gl_env) + 1));
-		while (environ->gl_env[i])
+				* (ft_tablen(env->gl_env) + 1));
+		while (env->gl_env[i])
 		{
-			p->env->gl_env[i] = ft_strdup_cu(environ->gl_env[i]);
+			p->env->gl_env[i] = ft_strdup_cu(env->gl_env[i]);
 			verify_ptr(p->env->gl_env[i]);
 			i++;
 		}
