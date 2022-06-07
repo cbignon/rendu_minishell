@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:07:08 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/07 14:35:15 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/07 15:00:48 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,30 +72,35 @@ static void	invalid_doll_digit(char *str, int *i, char *to_expand, int *j)
 	to_expand[*j] = '\0';
 }
 
-void	to_expand_dollar(char *str, int *i, char *to_expand, int *j)
+static void	cpy_doll(char *str, int *i, char *to_expand, int *j)
 {
 	int	doll;
 
-	doll = 0;
+	doll = *i;
+	to_expand[(*j)++] = str[(*i)++];
+	while (str[*i] && (ft_is_valid_var_char(str[*i]) || str[*i] == '?'))
+	{
+		if (*i == (doll + 1) && ft_isdigit(str[*i]))
+			return (invalid_doll_digit(str, i, to_expand, j));
+		to_expand[(*j)++] = str[(*i)++];
+		if (str[(*i)] == '\"' || str[(*i)] == '\'' || !str[(*i)])
+		{
+			to_expand[(*j)++] = '\0';
+			break ;
+		}
+	}
+}
+
+void	to_expand_dollar(char *str, int *i, char *to_expand, int *j)
+{
 	while (str[*i])
 	{
 		if (str[*i] == '$')
-		{
-			doll = *i;
-			to_expand[(*j)++] = str[(*i)++];
-			while (str[*i] && (ft_is_valid_var_char(str[*i]) || str[*i] == '?'))
-			{
-				if (*i == (doll + 1) && ft_isdigit(str[*i]))
-					return (invalid_doll_digit(str, i, to_expand, j));
-				to_expand[(*j)++] = str[(*i)++];
-				if (str[(*i)] == '\"' || str[(*i)] == '\'' || !str[(*i)])
-				{
-					to_expand[(*j)++] = '\0';
-					break ;
-				}
-			}
-		}
+			cpy_doll(str, i, to_expand, j);
 		else
+		{
+			to_expand[(*j)++] = '\0';
 			break ;
+		}
 	}
 }
