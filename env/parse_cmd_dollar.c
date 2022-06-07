@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:07:08 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/02 17:43:49 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/07 14:35:15 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	to_expand_dollar(char *str, int *i, char *to_expand, int *j)
 				if (*i == (doll + 1) && ft_isdigit(str[*i]))
 					return (invalid_doll_digit(str, i, to_expand, j));
 				to_expand[(*j)++] = str[(*i)++];
-				if (str[(*i)] == '\"' || str[(*i)] == '\'')
+				if (str[(*i)] == '\"' || str[(*i)] == '\'' || !str[(*i)])
 				{
 					to_expand[(*j)++] = '\0';
 					break ;

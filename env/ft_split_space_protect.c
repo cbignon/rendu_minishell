@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 12:28:22 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/03 14:54:13 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/07 14:00:56 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ static int	get_word_len_quote(char *str, int *i, int *ret, int *size)
 	}
 	if (str[*i] == '\"')
 	{
-		*size = 1;
+		*size = ft_strclen(str + *i + 1, '\"') + 2;
+		if ((*size + *i) > (int)ft_strlen(str))
+			return (1);
 		if (str[*i + *size] && (str[*i + *size] == ' '
 				|| str[*i + *size] == '\0'))
 			return (1);
@@ -90,6 +92,7 @@ char	**split_protect_quoted(char *str, char c)
 	int		count_words;
 
 	count_words = count_words_protected(str, c, 0, 0);
+	printf("count = %d\n",count_words);
 	tab = malloc_verify(sizeof(char *) * (count_words + 1));
 	i = 0;
 	j = 0;

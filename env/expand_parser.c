@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 11:23:51 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/03 14:55:51 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/07 14:35:04 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ char	*parse_dollar(char *str, int i, int j, char *full)
 	char	*to_keep;
 	int		k;
 
-	to_expand = malloc_bzero(8191);
+	to_expand = malloc_bzero(8192);
 	to_keep = malloc_bzero(ft_strlen(str) + 1);
 	k = 0;
-	while (str[i])
+	while (i < (int)ft_strlen(str))
 	{
 		j = 0;
 		if ((str[i] == '$' && str[i + 1] && !ft_is_valid_var_char(str[i + 1]))
