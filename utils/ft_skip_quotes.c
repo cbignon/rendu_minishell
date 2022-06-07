@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_skip_quotes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 15:35:26 by cbignon           #+#    #+#             */
-/*   Updated: 2022/04/27 15:42:07 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/07 15:00:06 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ char	*skip_quotes(char *str, int index)
 		{
 			lst = append_index(lst, index);
 			tmp = get_closing_quote(str + index, str[index]);
+			if (!tmp)
+				return (str);
 			length = length + tmp - 1;
 			index = index + tmp;
 			lst = append_index(lst, index);
