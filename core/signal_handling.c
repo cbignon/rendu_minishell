@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handling.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:32:58 by atron             #+#    #+#             */
-/*   Updated: 2022/04/25 15:53:44 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/07 17:27:25 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,11 @@ void	sub_handler(int sig, siginfo_t *info, void *context)
 	exit(0);
 }
 
-void	int_handler(int sig, siginfo_t *info, void *context)
+void	int_handler(int sig)
 {
 	t_process	*p;
 
 	(void)sig;
-	(void)info;
-	(void)context;
 	p = *get_processes(0);
 	kill_subs();
 	ft_export_res(130);
@@ -61,4 +59,26 @@ void	int_handler(int sig, siginfo_t *info, void *context)
 	}
 	else
 		ft_putstr_fd("\n", 1);
+}
+
+void signal_init(t_bool is_exec)
+{
+	//sigemptyset(&sa_int.sa_mask);
+	//sigemptyset(&sa_quit.sa_mask);
+	if (is_exec)
+	{
+		if (signal(SIGINT, &int_handler))
+			ft_exit("Signal error!", -1, 1);
+		if (signal(SIGQUIT, SIG_IGN))
+			ft_exit("Signal error!", -1, 1);
+	}
+	else
+	{
+		if (signal(SIGINT, SIG_DFL))
+			ft_exit("Signal error!", -1, 1);
+		if (signal(SIGQUIT, SIG_DFL))
+			ft_exit("Signal error!", -1, 1);
+	}
+	// sigaddset(&sa_int.sa_mask, SIGINT);
+	// sigaddset(&sa_quit.sa_mask, SIGINT);
 }

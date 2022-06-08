@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:06:17 by atron             #+#    #+#             */
-/*   Updated: 2022/06/06 16:02:16 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/07 22:34:06 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ char	*read_cmd(void)
 		else if (!is_valid)
 			break ;
 		cmd = ft_strjoin_cu(cmd, readline(">"));
+		verify_ptr(cmd);
 	}
 	return (cmd);
 }
@@ -88,21 +89,7 @@ void	minishell(void)
 
 int	main(void)
 {
-	struct sigaction	sa_int;
-	struct sigaction	sa_quit;
-
 	rl_catch_signals = 1;
-	sigemptyset(&sa_int.sa_mask);
-	sigemptyset(&sa_quit.sa_mask);
-	sa_int.sa_sigaction = &int_handler;
-	sa_int.sa_flags = SA_SIGINFO;
-	sa_quit.sa_handler = SIG_IGN;
-	if (sigaction(SIGINT, &sa_int, NULL))
-		ft_exit("Signal error!", -1, 1);
-	if (signal(SIGQUIT, sa_quit.sa_handler))
-		ft_exit("Signal error!", -1, 1);
-	sigaddset(&sa_int.sa_mask, SIGINT);
-	sigaddset(&sa_quit.sa_mask, SIGINT);
 	minishell();
 	rl_clear_history();
 	return (0);
