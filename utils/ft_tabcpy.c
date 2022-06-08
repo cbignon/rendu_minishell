@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tabcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:46:58 by atron             #+#    #+#             */
-/*   Updated: 2022/06/03 13:32:57 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/08 14:33:53 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ char	**ft_tabdup(char **tab)
 	while (i < len)
 	{
 		dup[i] = ft_strdup(tab[i]);
+		if (!dup[i])
+		{
+			ft_tabfree((void ***)&dup, ft_tablen(dup), 0);
+			return (NULL);
+		}
 		i++;
 	}
 	dup[i] = NULL;
