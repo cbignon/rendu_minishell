@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:45:52 by cbignon           #+#    #+#             */
-/*   Updated: 2022/04/29 15:15:23 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/08 10:27:03 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void		exec_cmd(t_process *p);
 void		fork_cmd(t_process *p);
 void		ft_export_res(int ret);
 int			create_pipe(t_process *processes);
-void		int_handler(int sig, siginfo_t *info, void *context);
-void		sub_handler(int sig, siginfo_t *info, void *context);
+void		int_handler(int sig);
+void		signal_init(t_bool is_exec);
 void		kill_subs(void);
 void		close_one_proc_fd(t_process *p);
 void		clean_args_quotes(char **args);

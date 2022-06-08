@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:28:45 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/03 14:24:27 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/08 10:22:45 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_exec_bin(t_process *p)
 		bin_path = ft_strdup(ft_get_bin_path(p->cmd, *env));
 	if (bin_path)
 	{
+		signal_init(TRUE);
 		tab = ft_tabdup(p->args);
 		en = ft_tabdup(*env);
 		gc_clear(0);

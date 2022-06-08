@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handling.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:32:58 by atron             #+#    #+#             */
-/*   Updated: 2022/06/07 17:27:25 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/08 10:39:51 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,6 @@ void	kill_subs(void)
 	}
 }
 
-void	sub_handler(int sig, siginfo_t *info, void *context)
-{
-	(void)sig;
-	(void)info;
-	(void)context;
-	exit(0);
-}
-
 void	int_handler(int sig)
 {
 	t_process	*p;
@@ -61,24 +53,20 @@ void	int_handler(int sig)
 		ft_putstr_fd("\n", 1);
 }
 
-void signal_init(t_bool is_exec)
+void	signal_init(t_bool is_exec)
 {
-	//sigemptyset(&sa_int.sa_mask);
-	//sigemptyset(&sa_quit.sa_mask);
-	if (is_exec)
+	if (!is_exec)
 	{
-		if (signal(SIGINT, &int_handler))
-			ft_exit("Signal error!", -1, 1);
-		if (signal(SIGQUIT, SIG_IGN))
-			ft_exit("Signal error!", -1, 1);
+		if (signal(SIGINT, &int_handler) == SIG_ERR)
+			ft_exit("MAIN SIG INT : Signal error!", -1, 1);
+		if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
+			ft_exit("MAIN SIG IGN : Signal error!", -1, 1);
 	}
 	else
 	{
-		if (signal(SIGINT, SIG_DFL))
-			ft_exit("Signal error!", -1, 1);
-		if (signal(SIGQUIT, SIG_DFL))
-			ft_exit("Signal error!", -1, 1);
+		if (signal(SIGINT, SIG_DFL) == SIG_ERR)
+			ft_exit("CHILD SIGINT : Signal error!", -1, 1);
+		if (signal(SIGQUIT, SIG_DFL) == SIG_ERR)
+			ft_exit("CHILD SIGQUIT : Signal error!", -1, 1);
 	}
-	// sigaddset(&sa_int.sa_mask, SIGINT);
-	// sigaddset(&sa_quit.sa_mask, SIGINT);
 }
