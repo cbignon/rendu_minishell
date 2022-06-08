@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   malloc_verify.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 10:02:27 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/01 14:03:38 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/08 10:06:41 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils_internal.h"
-#include "env.h"
-#include "core.h"
+#include "libft.h"
 
 void	*malloc_verify_ncu(int size)
 {
@@ -43,7 +41,6 @@ void	*malloc_bzero(int size)
 	void	*ptr;
 
 	ptr = malloc_verify(size);
-	verify_ptr(ptr);
 	ft_bzero(ptr, size);
 	return (ptr);
 }

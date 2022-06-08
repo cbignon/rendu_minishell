@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 12:17:30 by atron             #+#    #+#             */
-/*   Updated: 2022/06/03 19:31:14 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/08 06:23:13 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	*gc_malloc(size_t size)
 {
 	t_gc	*gc;
 	void	*ptr;
+	void	*res;
 
 	gc = get_garbage_collection();
 	if (!gc)
@@ -35,7 +36,13 @@ void	*gc_malloc(size_t size)
 	ptr = malloc(size);
 	if (!ptr)
 		return (NULL);
-	ft_lstadd_front(&gc->ptr_list, ft_lstnew(ptr));
+	res = ft_lstnew(ptr);
+	if (!res)
+	{
+		ft_free(ptr, 0);
+		return (NULL);
+	}
+	ft_lstadd_front(&gc->ptr_list, res);
 	return (ptr);
 }
 
