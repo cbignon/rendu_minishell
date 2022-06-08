@@ -116,7 +116,8 @@ char	*ft_tabjoin_cu(char **tab, unsigned int tab_size, unsigned int str_size)
 
 	x = 0;
 	z = 0;
-	str = (char *)malloc_verify(tab_size * str_size * sizeof(unsigned char) + 1);
+	str = (char *)malloc_verify
+		(tab_size * str_size * sizeof(unsigned char) + 1);
 	if (!str)
 		return (NULL);
 	while (x < str_size)

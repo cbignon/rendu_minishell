@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handling.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:32:58 by atron             #+#    #+#             */
-/*   Updated: 2022/06/08 14:26:31 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:31:48 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,19 @@ void	int_handler(int sig, siginfo_t *info, void *context)
 
 void	signal_init(t_bool is_exec)
 {
+	static struct sigaction	ignore;
+	static struct sigaction	sa_default;
+
 	if (!is_exec)
 	{
 		if (sigaction(SIGINT, get_sa_int(), NULL))
 			ft_exit("Signal error!", -1, 1);
-		static struct sigaction ignore;
 		ignore.sa_handler = SIG_IGN;
 		if (sigaction(SIGQUIT, &ignore, NULL))
 			ft_exit("Signal error!", -1, 1);
 	}
 	else
 	{
-		static struct sigaction sa_default;
 		sa_default.sa_handler = SIG_DFL;
 		if (sigaction(SIGINT, &sa_default, NULL))
 			ft_exit("Signal error!", -1, 1);
