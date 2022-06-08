@@ -6,7 +6,7 @@
 /*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 13:44:05 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/08 15:40:49 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/08 16:09:43 by atron            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ static void	setup_std(t_redirect *redir, t_process *p, int fd)
 		p->std_out = fd;
 	else if (redir->type == STDIN_ALL || redir->type == STDIN_HEREDOC)
 		p->std_in = fd;
+	close(fd);
 }
 
 void	setup_redirect(t_process *p)
@@ -110,7 +111,6 @@ void	setup_redirect(t_process *p)
 		}
 		else
 			setup_std(&p->redir[index], p, fd);
-		close(fd);
 		index++;
 	}
 }
