@@ -157,5 +157,4 @@ void			verify_ptr(void *ptr);
 void			*malloc_bzero(int size);
 void			*malloc_verify_ncu(int size);
 
-
 #endif
