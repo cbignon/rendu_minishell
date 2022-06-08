@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+         #
+#    By: atron <atron@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 16:50:21 by atron             #+#    #+#              #
-#    Updated: 2022/06/08 12:09:22 by Darkkoll         ###   ########.fr        #
+#    Updated: 2022/06/08 16:05:31 by atron            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ LIB_PATH = -L./libft/
 LIBS = -lft
 LIBS += -lreadline
 
-FLAGS = -Wall -Wextra -Werror# -std=gnu99
+FLAGS = -Wall -Wextra -Werror
 
 ifeq ($(architecture), x64)
   FLAGS += -DX64
@@ -223,19 +223,14 @@ fclean:
 
 re:		fclean all
 
--include valgrind.mk
-
 libft:
 	${MAKE} -C libft/ -f Makefile config=$(config) platform=${platform} architecture=${architecture}
 
 prep:
 	mkdir -p ${OBJDIRECTORIES}
 
-malloc_test: prep $(OBJS) $(MAINOBJ)
-	$(CC) $(FLAGS) -fsanitize=undefined -rdynamic -o $@ ${OBJS} ${MAINOBJ} $(LIB_PATH) $(LIBS) -L. -lmallocator
-
 $(OBJDIR)%.o: %.c
 	@echo $(notdir $<)
-	$(CC) $(FLAGS) $(INCLUDE) -MMD -c $<  -o $@
+	$(CC) $(FLAGS) $(INCLUDE) -c $<  -o $@
 
 .PHONY: all compile prep clean fclean re valgrind libft bonus

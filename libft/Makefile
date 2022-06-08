@@ -30,7 +30,7 @@ CC = clang
 
 INCLUDE = -I./
 
-FLAGS = -Wall -Wextra -Werror -std=c99
+FLAGS = -Wall -Wextra -Werror
 
 ifeq ($(architecture), x64)
   FLAGS += -DX64
@@ -179,6 +179,6 @@ prep:
 $(OBJDIR)%.o: %.c
 	mkdir -p $(@D)
 	@echo $(notdir $<)
-	$(CC) $(FLAGS) $(INCLUDE) -MMD -c $< -o $@
+	$(CC) $(FLAGS) $(INCLUDE) -c $< -o $@
 
 .PHONY: all compile clean fclean re bonus prep
