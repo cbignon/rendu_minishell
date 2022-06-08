@@ -6,7 +6,7 @@
 #    By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 16:50:21 by atron             #+#    #+#              #
-#    Updated: 2022/06/06 16:07:16 by Darkkoll         ###   ########.fr        #
+#    Updated: 2022/06/08 12:09:22 by Darkkoll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,12 @@ OBJDIR = ./intermediate/$(config)/
 
 TMPOBJS = $(SRCS:.c=.o)
 TMPMAINOBJ = $(MAIN:.c=.o)
+
+TMPOBJSDEPS = $(SRCS:.c=.d)
+TMPMAINOBJDEPS = $(MAIN:.c=.d)
+
+DEPS = $(addprefix $(OBJDIR), $(TMPOBJSDEPS))
+DEPS += $(addprefix $(OBJDIR), $(TMPMAINOBJDEPS))
 
 OBJS = $(addprefix $(OBJDIR), $(TMPOBJS))
 MAINOBJ = $(addprefix $(OBJDIR), $(TMPMAINOBJ))
@@ -167,25 +173,42 @@ SRCS += utils/ft_tab_to_str.c
 SRCS += utils/first_space_or_quote.c
 SRCS += utils/get_closing_quote.c
 SRCS += utils/append_index.c
-SRCS += utils/malloc_verify.c
 SRCS += utils/ft_skip_quotes.c
 SRCS += utils/ft_readline.c
 SRCS += utils/meta_utils.c
 SRCS += utils/interuption.c
 
+#HEADERS
+#############################################################
+#############################################################
+HEADERS =
+HEADERS += include/core.h
+HEADERS += include/env.h
+HEADERS += include/ft_split.h
+HEADERS += include/processes.h
+HEADERS += include/struct_env.h
+HEADERS += include/utils.h
+HEADERS += core/core_internal.h
+HEADERS += env/env_internal.h
+HEADERS += libft/libft.h
+HEADERS += libft/ft_def.h
+HEADERS += libft/ft_result.h
+HEADERS += processes/processes_internal.h
+HEADERS += utils/utils_internals.h
+
 #RULES
 #############################################################
 #############################################################
 
-$(NAME): prep ${OBJS} $(MAINOBJ)
-	${MAKE} -C libft/ -f Makefile config=$(config) platform=${platform} architecture=${architecture}
+all: build
+
+$(NAME): ${OBJS} $(MAINOBJ)
 	$(CC) $(FLAGS) -o $(NAME) $(MAINOBJ) $(OBJS) $(LIB_PATH) $(LIBS)
 
-all: compile
-
-compile:
-	$(MAKE) prep
-	$(MAKE) $(NAME)
+build:
+	mkdir -p ${OBJDIRECTORIES}
+	${MAKE} libft config=${config} platform=${platform} architecture=${architecture}
+	$(MAKE) $(NAME) config=${config} platform=${platform} architecture=${architecture}
 
 clean:
 	rm -rf intermediate
@@ -202,23 +225,17 @@ re:		fclean all
 
 -include valgrind.mk
 
-# valgrind:
-# 	${MAKE} -C . -f Makefile config=debug platform=${platform} architecture=${architecture} logging=${logging}
-# 	valgrind -s --leak-check=full --show-leak-kinds=all --suppressions=ignoreliberror ./$(NAME)
-
-valgrind-re:
-	${MAKE} -C . -f Makefile re config=debug platform=${platform} architecture=${architecture} logging=${logging}
-	valgrind -s --leak-check=full --show-leak-kinds=all --suppressions=ignoreliberror /$(NAME)
-
 libft:
 	${MAKE} -C libft/ -f Makefile config=$(config) platform=${platform} architecture=${architecture}
 
 prep:
-	$(SILENT)mkdir -p ${OBJDIRECTORIES}
-	touch prep
+	mkdir -p ${OBJDIRECTORIES}
+
+malloc_test: prep $(OBJS) $(MAINOBJ)
+	$(CC) $(FLAGS) -fsanitize=undefined -rdynamic -o $@ ${OBJS} ${MAINOBJ} $(LIB_PATH) $(LIBS) -L. -lmallocator
 
 $(OBJDIR)%.o: %.c
 	@echo $(notdir $<)
-	$(CC) $(FLAGS) $(INCLUDE) -c $<  -o $(OBJDIR)$(<:.c=.o)
+	$(CC) $(FLAGS) $(INCLUDE) -MMD -c $<  -o $@
 
-.PHONY: ${NAME} all compile prep clean fclean re valgrind libft bonus
+.PHONY: all compile prep clean fclean re valgrind libft bonus

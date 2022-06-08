@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:26:05 by atron             #+#    #+#             */
-/*   Updated: 2022/03/03 15:34:57 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/08 14:10:06 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*ft_realloc_cu(void **src, unsigned int src_size,
 
 	if (!src || !*src)
 		return (NULL);
-	dest = (char *)gc_malloc(dest_size);
+	dest = (char *)malloc_verify(dest_size);
 	if (!dest)
 		return (NULL);
 	ft_strlcpy(dest, (const char *) *src, src_size);

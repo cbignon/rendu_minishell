@@ -152,5 +152,10 @@ void			*gc_malloc(size_t size);
 int				gc_delone(void **ptr, int out);
 int				gc_clear(int out);
 void			*move_to_gc(void **ptr, size_t size);
+void			*malloc_verify(int size);
+void			verify_ptr(void *ptr);
+void			*malloc_bzero(int size);
+void			*malloc_verify_ncu(int size);
+
 
 #endif

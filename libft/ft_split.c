@@ -74,7 +74,7 @@ char	**ft_split(char const *s, char c)
 	int		j;
 
 	words = ft_count_words(s, c);
-	tab = (char **)gc_malloc(sizeof(char *) * (words + 1));
+	tab = (char **)malloc_verify(sizeof(char *) * (words + 1));
 	if (!tab)
 		return (NULL);
 	i = -1;
@@ -83,7 +83,7 @@ char	**ft_split(char const *s, char c)
 	{
 		ind = ft_next_word(s, c, ind);
 		j = 0;
-		tab[i] = (char *)gc_malloc(sizeof(char) * ft_wlength(s, c, ind));
+		tab[i] = (char *)malloc_verify(sizeof(char) * ft_wlength(s, c, ind));
 		if (!tab[i])
 			return ((char **)ft_freetab(tab, i));
 		while (s[ind] != c && s[ind])

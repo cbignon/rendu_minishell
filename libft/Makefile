@@ -68,9 +68,8 @@ endif
 
 OBJDIR = ./intermediate/$(config)/
 
-TMPOBJS = $(SRCS:.c=.o)
-
-OBJS = $(addprefix $(OBJDIR), $(TMPOBJS))
+OBJS = $(addprefix $(OBJDIR), $(SRCS:.c=.o))
+DEPS = $(addprefix $(OBJDIR), $(SRCS:.c=.d))
 
 SRCS =
 SRCS += ft_atoi.c
@@ -142,37 +141,44 @@ SRCS += ft_exit.c
 
 SRCS += garbage_collection/gc_use.c
 SRCS += garbage_collection/move_to_gc.c
+SRCS += garbage_collection/malloc_verify.c
+
+HEADERS =
+HEADERS += libft.h
+HEADERS += ft_def.h
+HEADERS += ft_result.h
 
 OBJDIRECTORIES = $(OBJDIR)
 OBJDIRECTORIES = $(OBJDIR)garbage_collection
 
-all: compile
+all: build
 
-$(NAME):	${OBJS}
-	$(SILENT) ar -rcs $(NAME).a $^
+$(NAME).a: $(OBJS)
+	ar -rcs $@ $^
 
-compile:
+build:
 	$(SILENT) $(MAKE) prep
-	$(SILENT) $(MAKE) $(NAME)
+	$(SILENT) $(MAKE) $(NAME).a
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(DEPS)
 	rm -rf intermediate
 
 fclean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(DEPS)
 	rm -rf intermediate
-	rm -f $(NAME)
+	rm -f $(NAME).a
 
-re:	fclean compile
+re:	fclean build
 
-bonus:	compile
+bonus:	build
 
 prep:
-	$(SILENT)mkdir -p $(OBJDIRECTORIES)
+	mkdir -p $(OBJDIRECTORIES)
 
 $(OBJDIR)%.o: %.c
+	mkdir -p $(@D)
 	@echo $(notdir $<)
-	$(CC) $(FLAGS) $(INCLUDE) -c $<  -o $(OBJDIR)$(<:.c=.o)
+	$(CC) $(FLAGS) $(INCLUDE) -MMD -c $< -o $@
 
-.PHONY: ${NAME} all compile clean fclean re bonus prep
+.PHONY: all compile clean fclean re bonus prep

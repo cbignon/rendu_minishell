@@ -45,7 +45,7 @@ char	*ft_strjoin_free_cu(char const *s1, char const *s2,
 	if (!s1 || !s2)
 		return (NULL);
 	i = ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1;
-	str = (char *)gc_malloc(sizeof(char) * i);
+	str = (char *)malloc_verify(sizeof(char) * i);
 	if (!str)
 		return (NULL);
 	i = 0;
@@ -70,7 +70,7 @@ char	*ft_strjoin_cu(char const *s1, char const *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	i = ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1;
-	str = (char *)gc_malloc(sizeof(char) * i);
+	str = (char *)malloc_verify(sizeof(char) * i);
 	if (!str)
 		return (NULL);
 	i = 0;
@@ -116,7 +116,7 @@ char	*ft_tabjoin_cu(char **tab, unsigned int tab_size, unsigned int str_size)
 
 	x = 0;
 	z = 0;
-	str = (char *)gc_malloc(tab_size * str_size * sizeof(unsigned char) + 1);
+	str = (char *)malloc_verify(tab_size * str_size * sizeof(unsigned char) + 1);
 	if (!str)
 		return (NULL);
 	while (x < str_size)

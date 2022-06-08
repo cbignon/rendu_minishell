@@ -89,7 +89,7 @@ char	*ft_itoa_cu(int n)
 		size = 0;
 		index = 0;
 		ft_num_count(n, &size);
-		str = (char *)gc_malloc(sizeof(char) * (size + 1));
+		str = (char *)malloc_verify(sizeof(char) * (size + 1));
 		if (!str)
 			return (NULL);
 		ft_num_str(n, str, &index);
