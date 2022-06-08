@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:32:58 by atron             #+#    #+#             */
-/*   Updated: 2022/06/08 14:11:54 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:26:31 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	kill_subs(void)
 	}
 }
 
-void	int_handler(int sig)
+void	int_handler(int sig, siginfo_t *info, void *context)
 {
 	t_process	*p;
 
