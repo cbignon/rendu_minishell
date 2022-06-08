@@ -6,7 +6,7 @@
 /*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 15:13:54 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/08 15:04:46 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/08 15:29:03 by atron            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ int	launch_builtin(t_process *p)
 		ft_unset(p);
 	else if (ft_str_equ(p->cmd, "exit"))
 		exit_builtin(p);
-	close_one_proc_fd(p);
+	if (p->proc_index > 0)
+		close(STDIN_FILENO);
+	if (p->proc_index < p->proc_count - 1)
+		close(STDOUT_FILENO);
 	return (0);
 }

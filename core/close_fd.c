@@ -6,7 +6,7 @@
 /*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 12:07:50 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/08 15:07:03 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/08 15:29:11 by atron            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,10 @@ void	close_one_proc_fd(t_process *p)
 	{
 		close(p->pipe_in[0]);
 		close(p->pipe_in[1]);
-		close(STDIN_FILENO);
 	}
 	if (p->proc_index < p->proc_count - 1)
 	{
 		close(p->pipe_out[0]);
 		close(p->pipe_out[1]);
-		close(STDOUT_FILENO);
 	}
 }

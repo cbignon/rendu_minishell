@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
+/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:06:17 by atron             #+#    #+#             */
-/*   Updated: 2022/06/08 14:11:26 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:57:56 by atron            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,12 @@ char	*read_cmd(void)
 
 	cmd = NULL;
 	cmd = readline(get_prompt());
+	size = ft_strlen(cmd) + 1;
+	cmd = move_to_gc((void **)&cmd, size);
 	while (TRUE)
 	{
 		if (!cmd)
 			return (NULL);
-		size = ft_strlen(cmd) + 1;
-		cmd = move_to_gc((void **)&cmd, size);
-		cmd[size - 1] = '\0';
 		is_valid = verify_syntax(cmd);
 		if (is_valid == 2)
 			return (get_empty_str());

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
+/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 13:44:05 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/02 13:24:23 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:40:49 by atron            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	setup_redirect(t_process *p)
 		}
 		else
 			setup_std(&p->redir[index], p, fd);
+		close(fd);
 		index++;
 	}
 }
