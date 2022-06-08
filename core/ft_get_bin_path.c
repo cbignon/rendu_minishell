@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_bin_path.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:28:45 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/03 14:24:27 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/08 13:41:46 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ char	*get_full_binpath(char *dir, DIR *dp, struct dirent *dirp)
 	char	*final_path;
 
 	dir_name = ft_strjoin_cu(dir, "/");
+	verify_ptr(dir_name);
 	final_path = ft_strjoin_cu(dir_name, dirp->d_name);
+	verify_ptr(final_path);
 	gc_delone((void **)&dir_name, 0);
 	closedir(dp);
 	return (final_path);
@@ -60,6 +62,7 @@ void	ft_exec_bin(t_process *p)
 		tab = ft_tabdup(p->args);
 		en = ft_tabdup(*env);
 		gc_clear(0);
+		signal_init(TRUE);
 		if (execve(bin_path, tab, en) == -1)
 			p->res = ft_printerr(p->std_err, p->cmd, NULL,
 					"no such file or directory") + 126;

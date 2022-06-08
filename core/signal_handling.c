@@ -6,12 +6,21 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:32:58 by atron             #+#    #+#             */
-/*   Updated: 2022/06/07 17:27:25 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/08 13:57:20 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include "core.h"
+
+struct sigaction	*get_sa_int(void)
+{
+	static struct sigaction	sa_int = {};
+
+	sa_int.sa_sigaction = &int_handler;
+	sa_int.sa_flags = SA_SIGINFO;
+	return (&sa_int);
+}
 
 void	kill_subs(void)
 {
@@ -34,7 +43,7 @@ void	kill_subs(void)
 	}
 }
 
-void	sub_handler(int sig, siginfo_t *info, void *context)
+void	do_nothing(int sig, siginfo_t *info, void *context)
 {
 	(void)sig;
 	(void)info;
@@ -42,11 +51,13 @@ void	sub_handler(int sig, siginfo_t *info, void *context)
 	exit(0);
 }
 
-void	int_handler(int sig)
+void	int_handler(int sig, siginfo_t *info, void *context)
 {
 	t_process	*p;
 
 	(void)sig;
+	(void)info;
+	(void)context;
 	p = *get_processes(0);
 	kill_subs();
 	ft_export_res(130);
@@ -63,22 +74,22 @@ void	int_handler(int sig)
 
 void signal_init(t_bool is_exec)
 {
-	//sigemptyset(&sa_int.sa_mask);
-	//sigemptyset(&sa_quit.sa_mask);
-	if (is_exec)
+	if (!is_exec)
 	{
-		if (signal(SIGINT, &int_handler))
+		if (sigaction(SIGINT, get_sa_int(), NULL))
 			ft_exit("Signal error!", -1, 1);
-		if (signal(SIGQUIT, SIG_IGN))
+		static struct sigaction ignore;
+		ignore.sa_handler = SIG_IGN;
+		if (sigaction(SIGQUIT, &ignore, NULL))
 			ft_exit("Signal error!", -1, 1);
 	}
 	else
 	{
-		if (signal(SIGINT, SIG_DFL))
+		static struct sigaction sa_default;
+		sa_default.sa_handler = SIG_DFL;
+		if (sigaction(SIGINT, &sa_default, NULL))
 			ft_exit("Signal error!", -1, 1);
-		if (signal(SIGQUIT, SIG_DFL))
+		if (sigaction(SIGQUIT, &sa_default, NULL))
 			ft_exit("Signal error!", -1, 1);
 	}
-	// sigaddset(&sa_int.sa_mask, SIGINT);
-	// sigaddset(&sa_quit.sa_mask, SIGINT);
 }

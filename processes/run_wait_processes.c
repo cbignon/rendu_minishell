@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:37:58 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/06 16:03:58 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/08 13:42:23 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	wait_processes(t_process *processes)
 	while (pid > 0)
 	{
 		pid = wait4(0, &status, WUNTRACED, NULL);
+		signal_init(FALSE);
 		if (pid == -1)
 			return (kill_subs());
 		else if (pid == 0)
