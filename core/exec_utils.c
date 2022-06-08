@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 15:13:54 by cbignon           #+#    #+#             */
-/*   Updated: 2022/04/27 15:14:28 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/08 15:04:46 by atron            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ int	launch_builtin(t_process *p)
 		ft_unset(p);
 	else if (ft_str_equ(p->cmd, "exit"))
 		exit_builtin(p);
+	close_one_proc_fd(p);
 	return (0);
 }
