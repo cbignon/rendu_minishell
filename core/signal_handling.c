@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:32:58 by atron             #+#    #+#             */
-/*   Updated: 2022/06/08 13:57:20 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:11:54 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,7 @@ void	kill_subs(void)
 	}
 }
 
-void	do_nothing(int sig, siginfo_t *info, void *context)
-{
-	(void)sig;
-	(void)info;
-	(void)context;
-	exit(0);
-}
-
-void	int_handler(int sig, siginfo_t *info, void *context)
+void	int_handler(int sig)
 {
 	t_process	*p;
 
@@ -72,7 +64,7 @@ void	int_handler(int sig, siginfo_t *info, void *context)
 		ft_putstr_fd("\n", 1);
 }
 
-void signal_init(t_bool is_exec)
+void	signal_init(t_bool is_exec)
 {
 	if (!is_exec)
 	{

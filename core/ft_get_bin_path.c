@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:28:45 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/08 13:41:46 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:11:30 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	ft_exec_bin(t_process *p)
 		bin_path = ft_strdup(ft_get_bin_path(p->cmd, *env));
 	if (bin_path)
 	{
+		signal_init(TRUE);
 		tab = ft_tabdup(p->args);
 		en = ft_tabdup(*env);
 		gc_clear(0);
