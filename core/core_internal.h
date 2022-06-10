@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core_internal.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 12:23:24 by atron             #+#    #+#             */
-/*   Updated: 2022/06/08 14:27:04 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/10 13:26:44 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
  */
 void	ft_export_res(int ret);
 void	exec_cmd(t_process *p);
+void	clean_exec_failed(char **en, char **tab, char *bin_path);
 
 /*******************************************************************************
  * SIGNAL_HANDLING.C 

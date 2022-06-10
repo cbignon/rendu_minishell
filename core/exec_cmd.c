@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:32:26 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/03 10:53:03 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/10 13:26:32 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ void	ft_export_res(int ret)
 		modify_var_in_env(&env->gl_env, var_name, value);
 	else
 		ft_add_to_env(&env->gl_env, var_name, value);
+}
+
+void	clean_exec_failed(char **en, char **tab, char *bin_path)
+{
+	if (tab)
+		ft_tabfree((void ***)&tab, ft_tablen(tab), 0);
+	if (en)
+		ft_tabfree((void ***)&en, ft_tablen(en), 0);
+	if (bin_path)
+		ft_free((void **)&bin_path, 0);
 }
 
 void	exec_cmd(t_process *p)

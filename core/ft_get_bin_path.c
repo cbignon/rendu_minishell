@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_bin_path.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:28:45 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/08 14:40:14 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/10 13:26:20 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_exec_bin(t_process *p)
 	struct stat	info;
 
 	env = choose_env(p);
-	bin_path = p->cmd;
+	bin_path = ft_strdup(p->cmd);
 	if (ft_str_has_char(p->cmd, '/') == -1)
 		bin_path = ft_strdup(ft_get_bin_path(p->cmd, *env));
 	if (bin_path)
@@ -76,11 +76,13 @@ void	ft_exec_bin(t_process *p)
 		exec_prep(&tab, &en, env, p);
 		signal_init(TRUE);
 		if (execve(bin_path, tab, en) == -1)
-			p->res = ft_printerr(p->std_err, p->cmd, NULL,
-					"no such file or directory") + 126;
-		if (stat(p->cmd, &info) == 0)
-			p->res = 126;
-		gc_delone((void **)bin_path, 0);
+		{
+			ft_printerr(2, bin_path, NULL, "no such file or directory");
+			clean_exec_failed(tab, en, bin_path);
+			exit(127);
+		}
+		if (stat(bin_path, &info) == 0)
+			exit(126);
 	}
 	else
 		exec_no_binpath(p);
