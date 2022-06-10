@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 13:13:30 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/03 13:56:33 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/10 13:37:52 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ int	ft_change_dir( int std_err, char *dir_n)
 
 	dp = opendir(dir_n);
 	if (!dp)
-		return (0);
-	closedir(dp);
-	if (chdir(dir_n) == -1)
 	{
 		if (stat(dir_n, &info) == -1)
 			return (ft_printerr(std_err, "cd", dir_n,
@@ -32,6 +29,12 @@ int	ft_change_dir( int std_err, char *dir_n)
 		if (!info.st_mode || info.st_mode != S_IXUSR)
 			return (ft_printerr(std_err, "cd", dir_n,
 					" Permission denied"));
+		return (0);
+	}
+	closedir(dp);
+	if (chdir(dir_n) == -1)
+	{
+		return (ft_printerr(std_err, "cd", dir_n, " can't change dir"));
 	}
 	return (0);
 }
