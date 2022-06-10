@@ -6,7 +6,7 @@
 /*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 16:03:40 by atron             #+#    #+#             */
-/*   Updated: 2022/06/01 10:16:03 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/10 14:22:26 by atron            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ t_process	*setup_processes(char *cmd)
 	char		*tmp;
 
 	index = 0;
-	commands = ft_split(cmd, '|');
+	commands = ft_split_protec(cmd, '|');
 	process_count = ft_tablen(commands);
 	processes = *get_processes(process_count);
 	if (!processes)

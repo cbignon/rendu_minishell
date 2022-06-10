@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_closing_quote.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:55:00 by atron             #+#    #+#             */
-/*   Updated: 2022/04/20 11:30:27 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/10 14:20:41 by atron            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils_internal.h"
 
-int	get_closing_quote(char *str, char quote)
+int	get_closing_quote(const char *str, char quote)
 {
 	int	index;
 

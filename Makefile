@@ -6,7 +6,7 @@
 #    By: atron <atron@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 16:50:21 by atron             #+#    #+#              #
-#    Updated: 2022/06/08 16:05:31 by atron            ###   ########.fr        #
+#    Updated: 2022/06/10 14:24:37 by atron            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -127,6 +127,7 @@ SRCS += processes/get_processes.c
 SRCS += processes/clean_processes.c
 SRCS += processes/processes_utils.c
 SRCS += processes/redirect.c
+SRCS += processes/ft_split_protec.c
 
 #FT_SPLIT_ARGS
 #############################################################

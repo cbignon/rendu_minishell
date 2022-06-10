@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   processes.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
+/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:14:16 by atron             #+#    #+#             */
-/*   Updated: 2022/06/02 13:11:22 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/10 14:23:59 by atron            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ void		clean_processes(void);
 t_process	*find_process(t_process *p, pid_t pid);
 void		wait_processes(t_process *processes);
 void		run_processes(t_process *processes);
+char		**ft_split_protec(char const *s, char c);
 
 #endif

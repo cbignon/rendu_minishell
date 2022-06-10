@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
+/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:47:19 by atron             #+#    #+#             */
-/*   Updated: 2022/06/08 06:21:27 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/10 14:20:58 by atron            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_tab_to_str(char **tab, char c, int final_len);
 int		size_tab_to_str(char **tab);
 char	*ft_tab_to_simple_str(char **tab);
 int		first_space_or_quote(char *str, int i);
-int		get_closing_quote(char *str, char quote);
+int		get_closing_quote(const char *str, char quote);
 int		verify_syntax(char *cmd);
 t_bool	is_quote(char c);
 int		*append_index(int *lst, int elem);

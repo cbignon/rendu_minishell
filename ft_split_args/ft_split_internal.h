@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_internal.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 10:58:51 by atron             #+#    #+#             */
-/*   Updated: 2022/04/28 11:14:38 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/10 14:21:23 by atron            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_arg_info	*get_args_info(char *str);
 t_arg_info	*realloc_arg_info(t_arg_info *args_info, int out_size);
 t_arg_info	*calloc_arg_info(int size);
 int			pass_white_space(int i, char *str);
-int			get_closing_quote(char *str, char quote);
 int			get_arg_length(char *str, int length);
 int			get_arg_count(t_arg_info	*args_info);
 
