@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <errno.h>
 
 int	ft_putstr_fd(char *s, int fd)
 {
@@ -19,6 +20,7 @@ int	ft_putstr_fd(char *s, int fd)
 	if (!s)
 		return (-1);
 	x = ft_strlen(s);
-	write(fd, s, x);
+	if (write(fd, s, x) == -1)
+		ft_putendl_fd("Bad file descriptor!", 2);
 	return (x);
 }

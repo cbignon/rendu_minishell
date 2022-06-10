@@ -6,7 +6,7 @@
 /*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 13:44:05 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/08 16:09:43 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/10 13:37:17 by atron            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ void	setup_redirect(t_process *p)
 			dup2(fd, stdfd);
 			close(fd);
 		}
+		else if (ft_is_builtin(p->cmd) || p->proc_count == 1)
+			p->std_out = fd;
 		else
 			setup_std(&p->redir[index], p, fd);
 		index++;
