@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 13:44:05 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/10 13:37:17 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/13 09:31:41 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,12 @@ void	setup_redirect(t_process *p)
 		setup_options(p, &index, &fd, &stdfd);
 		if (!ft_is_builtin(p->cmd) || p->proc_count > 1)
 		{
-			if (fd == -1)
-			{
-				if (errno == 13)
-					ft_exit(NULL, ft_printerr(2, p->redir->file, NULL,
-							"Permission denied"), 2);
+			if (fd == -1 && errno == 13)
+				ft_exit(NULL, ft_printerr(2, p->redir->file, NULL,
+						"Permission denied"), 2);
+			else if (fd == -1)
 				ft_exit(NULL, ft_printerr(2, p->redir->file, NULL,
 						"No such file or Directory"), 2);
-			}
 			dup2(fd, stdfd);
 			close(fd);
 		}

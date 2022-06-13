@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 13:27:08 by atron             #+#    #+#             */
-/*   Updated: 2022/06/12 14:32:57 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/13 09:29:25 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,8 @@ static int	ft_wlength(char const *str, char c, int i)
 				length += get_closing_quote(&str[i + length], str[i + length]);
 		length++;
 	}
-	printf("wlength: %d\n", length);
 	return (length);
 }
-
-#include <unistd.h>
 
 char	**ft_split_protec(char const *s, char c)
 {

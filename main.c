@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:06:17 by atron             #+#    #+#             */
-/*   Updated: 2022/06/08 15:57:56 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/13 09:43:24 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,16 @@
 static char	*invalid_cmd(char *cmd)
 {
 	ft_printerr(2, cmd, NULL, "Invalid Command!");
+	add_history(cmd);
 	gc_delone((void **)&cmd, 0);
 	return (get_empty_str());
 }
 
-char	*read_cmd(void)
+char	*multiline(char *cmd)
 {
+	char	*tmp;
 	int		is_valid;
-	char	*cmd;
-	int		size;
 
-	cmd = NULL;
-	cmd = readline(get_prompt());
-	size = ft_strlen(cmd) + 1;
-	cmd = move_to_gc((void **)&cmd, size);
 	while (TRUE)
 	{
 		if (!cmd)
@@ -48,14 +44,29 @@ char	*read_cmd(void)
 		is_valid = verify_syntax(cmd);
 		if (is_valid == 2)
 			return (get_empty_str());
-		add_history(cmd);
 		if (is_valid == -1)
 			return (invalid_cmd(cmd));
 		else if (!is_valid)
 			break ;
-		cmd = ft_strjoin_cu(cmd, readline(">"));
-		verify_ptr(cmd);
+		ft_putstr_fd(">", 1);
+		get_next_line(0, tmp);
+		if (!tmp)
+			break ;
+		cmd = ft_strjoin_cu(ft_strjoin_cu(cmd, "\n"), tmp);
 	}
+	return (cmd);
+}
+
+char	*read_cmd(void)
+{
+	int		size;
+	char	*cmd;
+
+	cmd = readline(get_prompt());
+	size = ft_strlen(cmd) + 1;
+	cmd = move_to_gc((void **)&cmd, size);
+	multiline(cmd);
+	add_history(cmd);
 	return (cmd);
 }
 

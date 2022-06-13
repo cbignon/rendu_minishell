@@ -67,8 +67,10 @@ char	*ft_strjoin_cu(char const *s1, char const *s2)
 	int		j;
 	char	*str;
 
-	if (!s1 || !s2)
+	if (!s1)
 		return (NULL);
+	if (!s2)
+		return ((char *)s1);
 	i = ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1;
 	str = (char *)malloc_verify(sizeof(char) * i);
 	if (!str)
