@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: atron <atron@student.42.fr>                +#+  +:+       +#+         #
+#    By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 16:50:21 by atron             #+#    #+#              #
-#    Updated: 2022/06/10 14:24:37 by atron            ###   ########.fr        #
+#    Updated: 2022/06/13 10:09:21 by Darkkoll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -231,7 +231,6 @@ prep:
 	mkdir -p ${OBJDIRECTORIES}
 
 $(OBJDIR)%.o: %.c
-	@echo $(notdir $<)
 	$(CC) $(FLAGS) $(INCLUDE) -c $<  -o $@
 
 .PHONY: all compile prep clean fclean re valgrind libft bonus
