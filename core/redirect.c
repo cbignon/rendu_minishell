@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 13:44:05 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/13 11:23:01 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/13 12:29:08 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,12 @@ int	setup_options(t_process *p, int *index, int *fd, int *stdfd)
 
 static void	setup_std(t_redirect *redir, t_process *p, int fd)
 {
+	if (fd == -1)
+		return ;
 	if (redir->type == STDOUT_APPEND || redir->type == STDOUT_OVERWRITE)
 		p->std_out = fd;
 	else if (redir->type == STDIN_ALL || redir->type == STDIN_HEREDOC)
 		p->std_in = fd;
-	ft_close(fd);
 }
 
 void	setup_redirect(t_process *p)
@@ -105,7 +106,6 @@ void	setup_redirect(t_process *p)
 				ft_exit(NULL, ft_printerr(2, p->redir->file, NULL,
 						"No such file or Directory"), 2);
 			dup2(fd, stdfd);
-			ft_close(fd);
 		}
 		setup_std(&p->redir[index], p, fd);
 		index++;
