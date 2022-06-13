@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 09:19:40 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/07 12:31:17 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/13 10:04:13 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ char	*ft_getenv(char *name, t_process *p)
 		return (NULL);
 	}
 	to_find = ft_strjoin_cu(name, "=");
-	verify_ptr(to_find);
 	value = ft_find_in_tab(*env, to_find);
 	gc_delone((void **)&to_find, 0);
 	if (value)
@@ -69,7 +68,6 @@ int	search_in_env_global(char *str)
 
 	env = ft_get_environ();
 	to_find = ft_strjoin_cu(str, "=");
-	verify_ptr(to_find);
 	if (is_var_in_env(env->gl_env, to_find))
 		return (1);
 	return (0);
@@ -84,7 +82,6 @@ char	*get_value_from_global(char *var_name)
 	env = ft_get_environ();
 	var_name = ft_strjoin_cu(var_name, "=");
 	line = ft_strdup_cu(ft_find_in_tab(env->gl_env, var_name));
-	verify_ptr(line);
 	ret = get_var_value(line);
 	return (ret);
 }

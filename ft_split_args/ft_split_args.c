@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:38:40 by atron             #+#    #+#             */
-/*   Updated: 2022/06/01 10:06:40 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/13 10:04:42 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	**ft_split_args(char *str)
 	{
 		tab[index] = ft_strndup_cu(args_info[index].start,
 				args_info[index].length);
-		verify_ptr(tab[index]);
 		index++;
 	}
 	tab[index] = NULL;

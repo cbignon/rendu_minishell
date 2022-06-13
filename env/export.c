@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 14:34:49 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/02 19:38:52 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/13 10:04:36 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,12 @@ void	ft_add_to_env(char ***env, char *var_name, char *var_value)
 	i = -1;
 	new_var = NULL;
 	new_var = ft_strjoin_cu(var_name, var_value);
-	verify_ptr(new_var);
 	new_env = malloc_verify(sizeof(char *) * (ft_tablen(*env) + 2));
 	while (++i < ft_tablen(*env))
 	{
 		new_env[i] = ft_strdup_cu((*env)[i]);
-		verify_ptr(new_env[i]);
 	}
 	new_env[i] = ft_strdup_cu(new_var);
-	verify_ptr(new_env[i]);
 	new_env[i + 1] = NULL;
 	ft_tabfree_cu((void ***)env, ft_tablen(*env), 0);
 	*env = new_env;

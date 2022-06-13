@@ -36,8 +36,6 @@ char	*ft_strdup_cu(const char *src)
 		return (NULL);
 	len = ft_strlen((char *)src);
 	dest = (char *)malloc_verify((len + 1) * sizeof(char));
-	if (!dest)
-		return (NULL);
 	ft_strlcpy(dest, src, len + 1);
 	return (dest);
 }

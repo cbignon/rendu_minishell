@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:32:26 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/10 13:26:32 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/13 10:03:59 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_export_res(int ret)
 	env = ft_get_environ();
 	value = ft_itoa_cu(ret);
 	var_name = ft_strdup_cu("LAST_RET_VALUE=");
-	verify_ptr(var_name);
 	if (is_var_in_env(env->gl_env, var_name))
 		modify_var_in_env(&env->gl_env, var_name, value);
 	else

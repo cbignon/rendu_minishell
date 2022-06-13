@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:26:05 by atron             #+#    #+#             */
-/*   Updated: 2022/06/08 14:10:06 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/13 10:01:22 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	*ft_realloc_cu(void **src, unsigned int src_size,
 	if (!src || !*src)
 		return (NULL);
 	dest = (char *)malloc_verify(dest_size);
-	if (!dest)
-		return (NULL);
 	ft_strlcpy(dest, (const char *) *src, src_size);
 	gc_delone((void **)src, 0);
 	*src = dest;

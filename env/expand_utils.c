@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:35:12 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/02 17:39:48 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/06/13 10:04:29 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ char	*ft_accumulate(char *full, char *to_expand, char *to_keep, int *k)
 	if (!full)
 	{
 		full = ft_strjoin_cu(to_keep, to_expand);
-		verify_ptr(full);
 		ft_bzero(to_expand, ft_strlen(to_expand));
 		ft_bzero(to_keep, ft_strlen(to_keep));
 		*k = 0;
@@ -96,9 +95,7 @@ char	*ft_accumulate(char *full, char *to_expand, char *to_keep, int *k)
 	else
 	{
 		tmp = ft_strjoin_cu(to_keep, to_expand);
-		verify_ptr(tmp);
 		full = ft_strjoin_cu(full, tmp);
-		verify_ptr(full);
 		ft_bzero(to_expand, ft_strlen(to_expand));
 		ft_bzero(to_keep, ft_strlen(to_keep));
 		*k = 0;

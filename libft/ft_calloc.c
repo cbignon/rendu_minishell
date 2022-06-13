@@ -28,8 +28,6 @@ void	*ft_calloc_init_cu(size_t nmemb, int c, size_t size)
 	void	*ptr;
 
 	ptr = malloc_verify(nmemb * size);
-	if (!ptr)
-		return (NULL);
 	ft_memset(ptr, c, nmemb * size);
 	return (ptr);
 }
@@ -50,8 +48,6 @@ void	*ft_calloc_cu(size_t nmemb, size_t size)
 	void	*ptr;
 
 	ptr = malloc_verify(nmemb * size);
-	if (!ptr)
-		return (NULL);
 	ft_bzero(ptr, nmemb * size);
 	return (ptr);
 }

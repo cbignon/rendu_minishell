@@ -81,7 +81,7 @@ char	*ft_itoa_cu(int n)
 
 	if (n == -2147483648)
 	{
-		str = ft_strdup("-2147483648\0");
+		str = ft_strdup_cu("-2147483648\0");
 		return (str);
 	}
 	else
@@ -90,8 +90,6 @@ char	*ft_itoa_cu(int n)
 		index = 0;
 		ft_num_count(n, &size);
 		str = (char *)malloc_verify(sizeof(char) * (size + 1));
-		if (!str)
-			return (NULL);
 		ft_num_str(n, str, &index);
 		str[index + 1] = '\0';
 	}

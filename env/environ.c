@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:32:22 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/07 11:10:16 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/13 10:04:21 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ t_env	*ft_get_environ(void)
 		while (i < tab_len)
 		{
 			env->gl_env[i] = ft_strdup_cu(environ[i]);
-			verify_ptr(env->gl_env[i]);
 			i++;
 		}
 		env->gl_env[i] = NULL;
@@ -72,7 +71,6 @@ void	ft_dup_environ(t_process *p)
 		while (env->gl_env[i])
 		{
 			p->env->gl_env[i] = ft_strdup_cu(env->gl_env[i]);
-			verify_ptr(p->env->gl_env[i]);
 			i++;
 		}
 		p->env->gl_env[i] = NULL;

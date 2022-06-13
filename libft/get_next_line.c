@@ -64,8 +64,6 @@ static char	*get_save(char *s1, size_t len)
 
 	temp = s1 + ft_strclen(s1, '\n') + 1;
 	result = (char *)ft_calloc_init_cu(len + 1, 0, sizeof(char));
-	if (!result)
-		return (NULL);
 	if (!(ft_memcpy(result, temp, len)))
 		return (NULL);
 	result[len] = '\0';
