@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"core.h": "c",
+			"utils.h": "c",
+			"env_internal.h": "c",
+			"fcntl.h": "c",
+			"env.h": "c",
+			"utils_internal.h": "c",
+			"errno.h": "c",
+			"struct_env.h": "c"
+		},
+		//"triggerTaskOnSave.selectedTask": "cppcheck all",
+		//"triggerTaskOnSave.tasks": {
+		//	"cppcheck all": [
+		//		"**/*.c",
+		//		"**/*.h"
+		//	]
+		}
+	}
+}
