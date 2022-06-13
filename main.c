@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:06:17 by atron             #+#    #+#             */
-/*   Updated: 2022/06/13 09:58:44 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/13 11:29:43 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ char	*multiline(char *cmd)
 		cmd = ft_strjoin_cu(cmd, "\n");
 		cmd = ft_strjoin_cu(cmd, tmp);
 	}
+	add_history(cmd);
 	return (cmd);
 }
 
@@ -67,7 +68,6 @@ char	*read_cmd(void)
 	size = ft_strlen(cmd) + 1;
 	cmd = move_to_gc((void **)&cmd, size);
 	cmd = multiline(cmd);
-	add_history(cmd);
 	return (cmd);
 }
 
