@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:34:59 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/06 16:04:36 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/13 11:20:22 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	setup_heredoc(t_process *p)
 			fd = open(p->redir[i].file, O_CREAT | O_RDWR | O_TRUNC, 0777);
 			file = get_stdin(delim, &p->redir[i].type, p->redir[i].quotes);
 			ft_putstr_fd(file, fd);
-			close(fd);
+			ft_close(fd);
 			gc_delone((void **)&delim, 0);
 			heredoc_nb++;
 		}

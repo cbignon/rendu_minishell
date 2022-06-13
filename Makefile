@@ -6,7 +6,7 @@
 #    By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 16:50:21 by atron             #+#    #+#              #
-#    Updated: 2022/06/13 10:09:21 by Darkkoll         ###   ########.fr        #
+#    Updated: 2022/06/13 11:20:49 by Darkkoll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -178,6 +178,7 @@ SRCS += utils/ft_skip_quotes.c
 SRCS += utils/ft_readline.c
 SRCS += utils/meta_utils.c
 SRCS += utils/interuption.c
+SRCS += utils/ft_close.c
 
 #HEADERS
 #############################################################

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 15:13:54 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/08 15:29:03 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/13 11:20:22 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	launch_builtin(t_process *p)
 	else if (ft_str_equ(p->cmd, "exit"))
 		exit_builtin(p);
 	if (p->proc_index > 0)
-		close(STDIN_FILENO);
+		ft_close(STDIN_FILENO);
 	if (p->proc_index < p->proc_count - 1)
-		close(STDOUT_FILENO);
+		ft_close(STDOUT_FILENO);
 	return (0);
 }

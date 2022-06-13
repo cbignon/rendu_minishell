@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:47:19 by atron             #+#    #+#             */
-/*   Updated: 2022/06/10 14:20:58 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/13 11:19:58 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ char	*skip_quotes(char *str, int index);
 char	*ft_readline(char *prompt);
 t_bool	verify_meta(char *str, int index);
 t_bool	get_interuption(t_bool value);
+void    ft_close(int fd);
 
 #endif

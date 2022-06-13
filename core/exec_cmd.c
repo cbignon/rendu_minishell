@@ -6,7 +6,7 @@
 /*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:32:26 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/13 10:03:59 by Darkkoll         ###   ########.fr       */
+/*   Updated: 2022/06/13 11:20:22 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,15 @@ static void	child_process(t_process *p)
 {
 	if (p->proc_index < p->proc_count - 1)
 	{
-		close(p->pipe_out[0]);
+		ft_close(p->pipe_out[0]);
 		dup2(p->pipe_out[1], STDOUT_FILENO);
-		close(p->pipe_out[1]);
+		ft_close(p->pipe_out[1]);
 	}
 	if (p->proc_index > 0)
 	{
-		close(p->pipe_in[1]);
+		ft_close(p->pipe_in[1]);
 		dup2(p->pipe_in[0], STDIN_FILENO);
-		close(p->pipe_in[0]);
+		ft_close(p->pipe_in[0]);
 	}
 	close_fd(p);
 	exec_cmd(p);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_fd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atron <atron@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Darkkoll <Darkkoll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 12:07:50 by cbignon           #+#    #+#             */
-/*   Updated: 2022/06/08 15:29:11 by atron            ###   ########.fr       */
+/*   Updated: 2022/06/13 11:20:22 by Darkkoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ int	close_fd(t_process *p)
 	{
 		if (proc_list[i].proc_index == i)
 		{
-			close(proc_list[i].pipe_out[1]);
+			ft_close(proc_list[i].pipe_out[1]);
 			if (proc_list[i].proc_index > 0)
 			{
-				close(proc_list[i].pipe_in[0]);
-				close(proc_list[i].pipe_out[1]);
+				ft_close(proc_list[i].pipe_in[0]);
+				ft_close(proc_list[i].pipe_out[1]);
 			}
 		}
 		else if (proc_list[i].proc_index > 0)
-			close(proc_list[i].pipe_in[1]);
+			ft_close(proc_list[i].pipe_in[1]);
 		i++;
 	}
 	return (0);
@@ -41,12 +41,12 @@ void	close_one_proc_fd(t_process *p)
 {
 	if (p->proc_index > 0)
 	{
-		close(p->pipe_in[0]);
-		close(p->pipe_in[1]);
+		ft_close(p->pipe_in[0]);
+		ft_close(p->pipe_in[1]);
 	}
 	if (p->proc_index < p->proc_count - 1)
 	{
-		close(p->pipe_out[0]);
-		close(p->pipe_out[1]);
+		ft_close(p->pipe_out[0]);
+		ft_close(p->pipe_out[1]);
 	}
 }
